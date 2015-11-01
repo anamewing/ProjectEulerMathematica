@@ -1,0 +1,223 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6660,        214]
+NotebookOptionsPosition[      5883,        183]
+NotebookOutlinePosition[      6238,        199]
+CellTagsIndexPosition[      6195,        196]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Consecutive prime sum
+Problem 50
+
+The prime 41, can be written as the sum of six consecutive primes : 41 = 2 + \
+3 + 5 + 7 + 11 + 13
+
+This is the longest sum of consecutive primes that adds to a prime below one \
+- hundred.The longest sum of consecutive primes below one - thousand that \
+adds to a prime, contains 21 terms, and is equal to 953.
+
+Which prime, below one - million, can be written as the sum of the most \
+consecutive primes?\
+\>", "Text",
+ CellChangeTimes->{{3.6549654205734262`*^9, 3.654965423063946*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"MAX", "=", "1000000"}], ";"}]], "Input",
+ CellChangeTimes->{{3.655021258987618*^9, 3.655021262028521*^9}, {
+  3.655021485424374*^9, 3.655021500605287*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"maxN", "=", 
+  RowBox[{"PrimePi", "@", 
+   RowBox[{"NextPrime", "[", 
+    RowBox[{"MAX", ",", 
+     RowBox[{"-", "1"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.6549654364240503`*^9, 3.654965479977859*^9}, 
+   3.655021265122839*^9}],
+
+Cell[BoxData["78498"], "Output",
+ CellChangeTimes->{{3.654965444065597*^9, 3.654965480739293*^9}, {
+   3.655021487065452*^9, 3.655021508192918*^9}, 3.6550215787003527`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"primeList", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Prime", "[", "i", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", "maxN"}], "}"}]}], "]"}]}], ";"}]], "Input",\
+
+ CellChangeTimes->{{3.654965492787469*^9, 3.654965530117687*^9}, 
+   3.655021503070141*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"AllPrimeWithNums", "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"#", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], ",", 
+         RowBox[{"Total", "@", 
+          RowBox[{"#", "[", 
+           RowBox[{"[", "2", "]"}], "]"}]}]}], "}"}], "&"}], "/@", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "2", "]"}], "]"}], "-", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], "+", "1"}], ",", 
+           RowBox[{"Take", "[", 
+            RowBox[{"primeList", ",", "#"}], "]"}]}], "}"}], "&"}], "/@", 
+        RowBox[{"Cases", "[", 
+         RowBox[{
+          RowBox[{"Tuples", "[", 
+           RowBox[{
+            RowBox[{"Range", "[", 
+             RowBox[{"1", ",", "maxN"}], "]"}], ",", "2"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"x_", ",", "y_"}], "}"}], "/;", 
+           RowBox[{"x", "<=", "y"}]}]}], "]"}]}], ")"}]}], ")"}], "//", 
+    RowBox[{
+     RowBox[{"Cases", "[", 
+      RowBox[{"#", ",", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"_", ",", "x_"}], "}"}], "/;", 
+        RowBox[{
+         RowBox[{"PrimeQ", "[", "x", "]"}], "&&", 
+         RowBox[{"x", "<", "MAX"}]}]}]}], "]"}], "&"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.655021084518135*^9, 3.655021104380254*^9}, {
+   3.655021230140317*^9, 3.655021235762278*^9}, {3.655021269126289*^9, 
+   3.6550213152760763`*^9}, 3.655021505702124*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "nomem"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"The current computation was aborted because there was \
+insufficient memory available to complete the computation.\"\>"}]], "Message",\
+ "MSG",
+ CellChangeTimes->{3.655021578807378*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Throw", "::", "sysexc"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Uncaught SystemException returned to top level. Can be \
+caught with Catch[\[Ellipsis], _SystemException].\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.6550215788473997`*^9}],
+
+Cell[BoxData[
+ RowBox[{"SystemException", "[", "\<\"MemoryAllocationFailure\"\>", 
+  "]"}]], "Output",
+ CellChangeTimes->{{3.655021293698905*^9, 3.655021315584096*^9}, 
+   3.65502148742807*^9, 3.655021541560313*^9, 3.6550215788503876`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Sort", "[", 
+   RowBox[{"AllPrimeWithNums", ",", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"#1", "[", 
+       RowBox[{"[", "1", "]"}], "]"}], ">", 
+      RowBox[{"#2", "[", 
+       RowBox[{"[", "1", "]"}], "]"}]}], "&"}]}], "]"}], "[", 
+  RowBox[{"[", "1", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.65502111094496*^9, 3.6550211838179207`*^9}, {
+  3.655021354468163*^9, 3.655021358009117*^9}, {3.655021410721245*^9, 
+  3.6550214726302977`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Sort", "::", "normal"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Nonatomic expression expected at position \
+\[NoBreak]\\!\\(1\\)\[NoBreak] in \
+\[NoBreak]\\!\\(Sort[\\(\\(AllPrimeWithNums, \\(\\(\\(\\(\\(\\(#1 \
+\[LeftDoubleBracket] 1 \[RightDoubleBracket]\\)\\) > \\(\\(#2 \
+\[LeftDoubleBracket] 1 \[RightDoubleBracket]\\)\\)\\)\\) &\\)\\)\\)\\)]\\)\
+\[NoBreak].\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.6550215789114046`*^9}],
+
+Cell[BoxData["AllPrimeWithNums"], "Output",
+ CellChangeTimes->{{3.655021156955174*^9, 3.6550211842890987`*^9}, 
+   3.6550213225869207`*^9, {3.655021354802986*^9, 3.655021358283476*^9}, {
+   3.655021415384622*^9, 3.6550214874657717`*^9}, 3.655021578915405*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 708},
+WindowMargins->{{316, Automatic}, {15, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 532, 14, 182, "Text"],
+Cell[1093, 36, 190, 4, 28, "Input"],
+Cell[CellGroupData[{
+Cell[1308, 44, 260, 7, 28, "Input"],
+Cell[1571, 53, 172, 2, 28, "Output"]
+}, Open  ]],
+Cell[1758, 58, 328, 10, 28, "Input"],
+Cell[CellGroupData[{
+Cell[2111, 72, 1629, 47, 97, "Input"],
+Cell[3743, 121, 307, 8, 21, "Message"],
+Cell[4053, 131, 298, 7, 24, "Message"],
+Cell[4354, 140, 239, 4, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4630, 149, 482, 13, 28, "Input"],
+Cell[5115, 164, 490, 11, 21, "Message"],
+Cell[5608, 177, 259, 3, 28, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
