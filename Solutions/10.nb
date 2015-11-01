@@ -1,0 +1,88 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      1946,         79]
+NotebookOptionsPosition[      1484,         57]
+NotebookOutlinePosition[      1838,         73]
+CellTagsIndexPosition[      1795,         70]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Summation of primes
+Problem 10
+
+The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+
+Find the sum of all the primes below two million.\
+\>", "Text",
+ CellChangeTimes->{{3.655395472577826*^9, 3.65539547536558*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"primeIndex", "=", 
+  RowBox[{"PrimePi", "[", 
+   RowBox[{"NextPrime", "[", 
+    RowBox[{"2000000", ",", 
+     RowBox[{"-", "1"}]}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.655395479649094*^9, 3.655395497955196*^9}}],
+
+Cell[BoxData["148933"], "Output",
+ CellChangeTimes->{3.6553954990947113`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Total", "@", 
+  RowBox[{"Prime", "@", 
+   RowBox[{"Range", "[", 
+    RowBox[{"1", ",", "primeIndex"}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.65539550146723*^9, 3.655395511835326*^9}}],
+
+Cell[BoxData["142913828922"], "Output",
+ CellChangeTimes->{3.655395513198488*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 709},
+WindowMargins->{{84, Automatic}, {16, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 225, 8, 125, "Text"],
+Cell[CellGroupData[{
+Cell[808, 32, 247, 6, 28, "Input"],
+Cell[1058, 40, 77, 1, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1172, 46, 212, 5, 28, "Input"],
+Cell[1387, 53, 81, 1, 28, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
