@@ -1,0 +1,77 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      1666,         67]
+NotebookOptionsPosition[      1309,         49]
+NotebookOutlinePosition[      1663,         65]
+CellTagsIndexPosition[      1620,         62]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Factorial digit sum
+Problem 20
+
+n! means n*(n \[Minus] 1)* ...*3*2*1
+
+For example, 10! = 10*9* ...*3*2*1 = 3628800, and the sum of the digits in \
+the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27.
+
+Find the sum of the digits in the number 100!
+\
+\>", "Text",
+ CellChangeTimes->{{3.655115393461926*^9, 3.655115395052596*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Total", "@", 
+  RowBox[{"IntegerDigits", "@", 
+   RowBox[{"(", 
+    RowBox[{"100", "!"}], ")"}]}]}]], "Input",
+ CellChangeTimes->{{3.655115270426127*^9, 3.655115343562134*^9}, {
+  3.655115374973769*^9, 3.655115376613084*^9}}],
+
+Cell[BoxData["648"], "Output",
+ CellChangeTimes->{{3.655115314428628*^9, 3.6551153441359777`*^9}, 
+   3.655115376988616*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 705},
+WindowMargins->{{28, Automatic}, {36, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 334, 12, 201, "Text"],
+Cell[CellGroupData[{
+Cell[917, 36, 249, 6, 28, "Input"],
+Cell[1169, 44, 124, 2, 28, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

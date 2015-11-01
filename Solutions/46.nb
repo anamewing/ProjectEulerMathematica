@@ -1,0 +1,124 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3493,        115]
+NotebookOptionsPosition[      3096,         96]
+NotebookOutlinePosition[      3450,        112]
+CellTagsIndexPosition[      3407,        109]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Goldbach' s other conjecture
+Problem 46
+
+It was proposed by Christian Goldbach that every odd composite number can be \
+written as the sum of a prime and twice a square.9 = 7 + 2*12
+15 = 7 + 2*22
+21 = 3 + 2*32
+25 = 7 + 2*32
+27 = 19 + 2*22
+33 = 31 + 2*12
+
+It turns out that the conjecture was false.What is the smallest odd composite \
+that cannot be written as the sum of a prime and twice a square?\
+\>", "Text",
+ CellChangeTimes->{{3.655306689155986*^9, 3.6553066960183887`*^9}}],
+
+Cell["\:76f4\:63a5\:628a\:80fd\:751f\:6210\:7684\:6570\:90fd\:751f\:6210\:51fa\
+\:6765\:ff0c\:7528\:5947\:6570\:67e5\:8868", "Text",
+ CellChangeTimes->{{3.655308205783387*^9, 3.6553082235373697`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"iMax", "=", "10000"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"i", "=", "iMax"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"odds", "=", 
+   RowBox[{"Cases", "[", 
+    RowBox[{
+     RowBox[{"Range", "[", 
+      RowBox[{"3", ",", "i"}], "]"}], ",", 
+     RowBox[{"_", "?", "OddQ"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"testAll", "=", 
+   RowBox[{
+    RowBox[{"DeleteDuplicates", "@", 
+     RowBox[{"Tuples", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Prime", "[", 
+         RowBox[{"Range", "[", 
+          RowBox[{"1", ",", 
+           RowBox[{"PrimePi", "[", 
+            RowBox[{"NextPrime", "[", 
+             RowBox[{"i", ",", "1"}], "]"}], "]"}]}], "]"}], "]"}], ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"#", "^", "2"}], "&"}], "/@", 
+         RowBox[{"Range", "[", 
+          RowBox[{"0", ",", 
+           RowBox[{"Floor", "[", 
+            RowBox[{"Sqrt", "[", 
+             RowBox[{"i", "/", "2"}], "]"}], "]"}]}], "]"}]}]}], "}"}], 
+      "]"}]}], "/.", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x_", ",", "y_"}], "}"}], "\[Rule]", 
+     RowBox[{"x", "+", 
+      RowBox[{"2", "*", "y"}]}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Complement", "[", 
+  RowBox[{"odds", ",", "testAll"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.655307692913972*^9, 3.6553077089040127`*^9}, {
+  3.655307771219906*^9, 3.6553077715849524`*^9}, {3.655307808975875*^9, 
+  3.655307818004077*^9}, {3.655307855717057*^9, 3.655307889252437*^9}, {
+  3.65530806099395*^9, 3.655308089876133*^9}, {3.655308156812468*^9, 
+  3.6553081807619753`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"5777", ",", "5993"}], "}"}]], "Output",
+ CellChangeTimes->{{3.655308178733081*^9, 3.655308181197936*^9}}]
+}, Open  ]]
+},
+WindowSize->{808, 707},
+WindowMargins->{{20, Automatic}, {Automatic, 44}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 491, 15, 258, "Text"],
+Cell[1052, 37, 200, 2, 30, "Text"],
+Cell[CellGroupData[{
+Cell[1277, 43, 1655, 45, 148, "Input"],
+Cell[2935, 90, 145, 3, 28, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

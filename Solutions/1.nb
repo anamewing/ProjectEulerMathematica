@@ -1,0 +1,114 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3022,        105]
+NotebookOptionsPosition[      2516,         83]
+NotebookOutlinePosition[      2873,         99]
+CellTagsIndexPosition[      2830,         96]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Multiples of 3 and 5
+Problem 1
+
+If we list all the natural numbers below 10 that are multiples of 3 or 5, we \
+get 3, 5, 6 and 9. The sum of these multiples is 23.
+
+Find the sum of all the multiples of 3 or 5 below 1000.
+\
+\>", "Text",
+ CellChangeTimes->{{3.65496315262593*^9, 3.6549631614551163`*^9}}],
+
+Cell[BoxData["Prime"], "Input",
+ CellChangeTimes->{{3.654963172903968*^9, 3.654963176436418*^9}}],
+
+Cell[BoxData["Reap"], "Input",
+ CellChangeTimes->{{3.654963450664941*^9, 3.654963452342226*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"F", "[", "x_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Divisible", "[", 
+    RowBox[{"x", ",", "3"}], "]"}], "||", 
+   RowBox[{"Divisible", "[", 
+    RowBox[{"x", ",", "5"}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.6549632368825407`*^9, 3.654963260451014*^9}, {
+  3.654963536918342*^9, 3.654963585555703*^9}, {3.6549636346701107`*^9, 
+  3.6549636758097*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Total", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"#", "[", 
+       RowBox[{"[", "1", "]"}], "]"}], ",", 
+      RowBox[{"#", "[", 
+       RowBox[{"[", "2", "]"}], "]"}], ",", "0"}], "]"}], "&"}], "/@", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"F", "[", "i", "]"}], ",", "i"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", "999"}], "}"}]}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.654963680999898*^9, 3.654963714202071*^9}, {
+  3.654963766171941*^9, 3.65496376920336*^9}, {3.654963832112382*^9, 
+  3.654963834348681*^9}, {3.654963878128026*^9, 3.6549638959822483`*^9}, {
+  3.654963929119383*^9, 3.654964018461978*^9}}],
+
+Cell[BoxData["233168"], "Output",
+ CellChangeTimes->{
+  3.6549637147248383`*^9, 3.654963771190834*^9, {3.65496396753621*^9, 
+   3.6549640187526627`*^9}}]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.6549640860574303`*^9, 3.654964144595523*^9}}]
+},
+WindowSize->{808, 707},
+WindowMargins->{{Automatic, 247}, {-166, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 312, 10, 163, "Text"],
+Cell[873, 32, 97, 1, 28, "Input"],
+Cell[973, 35, 96, 1, 28, "Input"],
+Cell[1072, 38, 393, 10, 28, "Input"],
+Cell[CellGroupData[{
+Cell[1490, 52, 757, 20, 28, "Input"],
+Cell[2250, 74, 153, 3, 28, "Output"]
+}, Open  ]],
+Cell[2418, 80, 94, 1, 28, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
