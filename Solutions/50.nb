@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      6660,        214]
-NotebookOptionsPosition[      5883,        183]
-NotebookOutlinePosition[      6238,        199]
-CellTagsIndexPosition[      6195,        196]
+NotebookDataLength[      9521,        302]
+NotebookOptionsPosition[      8361,        258]
+NotebookOutlinePosition[      8716,        274]
+CellTagsIndexPosition[      8673,        271]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -34,11 +34,22 @@ consecutive primes?\
 \>", "Text",
  CellChangeTimes->{{3.6549654205734262`*^9, 3.654965423063946*^9}}],
 
+Cell[CellGroupData[{
+
+Cell["map on all prime consecutive list", "Subsubsection",
+ CellChangeTimes->{{3.6554504107053623`*^9, 3.655450428328166*^9}}],
+
 Cell[BoxData[
  RowBox[{
-  RowBox[{"MAX", "=", "1000000"}], ";"}]], "Input",
+  RowBox[{"realMAX", "=", "1000000"}], ";"}]], "Input",
+ CellChangeTimes->{{3.655449275595503*^9, 3.65544928121071*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"MAX", "=", "100000"}], ";"}]], "Input",
  CellChangeTimes->{{3.655021258987618*^9, 3.655021262028521*^9}, {
-  3.655021485424374*^9, 3.655021500605287*^9}}],
+   3.655021485424374*^9, 3.655021500605287*^9}, {3.655449253752214*^9, 
+   3.655449253825541*^9}, 3.655450323609974*^9}],
 
 Cell[CellGroupData[{
 
@@ -51,9 +62,10 @@ Cell[BoxData[
  CellChangeTimes->{{3.6549654364240503`*^9, 3.654965479977859*^9}, 
    3.655021265122839*^9}],
 
-Cell[BoxData["78498"], "Output",
+Cell[BoxData["9592"], "Output",
  CellChangeTimes->{{3.654965444065597*^9, 3.654965480739293*^9}, {
-   3.655021487065452*^9, 3.655021508192918*^9}, 3.6550215787003527`*^9}]
+   3.655021487065452*^9, 3.655021508192918*^9}, 3.6550215787003527`*^9, 
+   3.655449257491768*^9, 3.6554495247410927`*^9, 3.655450326842166*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -114,10 +126,12 @@ Cell[BoxData[
          RowBox[{"_", ",", "x_"}], "}"}], "/;", 
         RowBox[{
          RowBox[{"PrimeQ", "[", "x", "]"}], "&&", 
-         RowBox[{"x", "<", "MAX"}]}]}]}], "]"}], "&"}]}]}], ";"}]], "Input",
+         RowBox[{"x", "<", "realMAX"}]}]}]}], "]"}], "&"}]}]}], 
+  ";"}]], "Input",
  CellChangeTimes->{{3.655021084518135*^9, 3.655021104380254*^9}, {
    3.655021230140317*^9, 3.655021235762278*^9}, {3.655021269126289*^9, 
-   3.6550213152760763`*^9}, 3.655021505702124*^9}],
+   3.6550213152760763`*^9}, 3.655021505702124*^9, {3.655449285447583*^9, 
+   3.6554492900299597`*^9}}],
 
 Cell[BoxData[
  RowBox[{
@@ -180,6 +194,67 @@ Cell[BoxData["AllPrimeWithNums"], "Output",
    3.6550213225869207`*^9, {3.655021354802986*^9, 3.655021358283476*^9}, {
    3.655021415384622*^9, 3.6550214874657717`*^9}, 3.655021578915405*^9}]
 }, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["try exhaustive", "Subsubsection",
+ CellChangeTimes->{{3.655450441432756*^9, 3.655450466895842*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"old", "=", "0"}], ";"}]], "Input",
+ CellChangeTimes->{{3.655449437858387*^9, 3.6554494391108418`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Do", "[", 
+  RowBox[{
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"theP", "=", 
+       RowBox[{"Total", "@", 
+        RowBox[{"(", 
+         RowBox[{"Prime", "/@", 
+          RowBox[{"Range", "[", 
+           RowBox[{"i", ",", "j"}], "]"}]}], ")"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"PrimeQ", "[", "theP", "]"}], "&&", 
+         RowBox[{"realMAX", ">", 
+          RowBox[{"j", "-", "i"}], ">", "old"}]}], ",", 
+        RowBox[{
+         RowBox[{"old", "=", 
+          RowBox[{"j", "-", "i"}]}], ";"}]}], "]"}], ";"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"j", ",", 
+       RowBox[{"i", "+", "30"}], ",", "maxN"}], "}"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "1", ",", "maxN"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", "old"}], "Input",
+ CellChangeTimes->{{3.6554493588962517`*^9, 3.655449509417872*^9}, {
+  3.65544964169855*^9, 3.655449642879428*^9}, {3.655449721018897*^9, 
+  3.655449729793522*^9}, {3.655449835968172*^9, 3.655449836659645*^9}, {
+  3.655449919905014*^9, 3.655449923701199*^9}, {3.655450059974434*^9, 
+  3.655450174552696*^9}}],
+
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{
+  3.655449672321095*^9, 3.6554497557316732`*^9, 3.6554498806983232`*^9, 
+   3.655450044298761*^9, {3.655450107733162*^9, 3.655450128284487*^9}, 
+   3.655450317442862*^9}],
+
+Cell[BoxData["1222"], "Output",
+ CellChangeTimes->{
+  3.655449672321095*^9, 3.6554497557316732`*^9, 3.6554498806983232`*^9, 
+   3.655450044298761*^9, {3.655450107733162*^9, 3.655450128284487*^9}, 
+   3.655450317453177*^9}]
+}, Open  ]]
+}, Open  ]]
 },
 WindowSize->{808, 708},
 WindowMargins->{{316, Automatic}, {15, Automatic}},
@@ -199,22 +274,35 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[558, 20, 532, 14, 182, "Text"],
-Cell[1093, 36, 190, 4, 28, "Input"],
 Cell[CellGroupData[{
-Cell[1308, 44, 260, 7, 28, "Input"],
-Cell[1571, 53, 172, 2, 28, "Output"]
+Cell[1115, 38, 126, 1, 35, "Subsubsection"],
+Cell[1244, 41, 144, 3, 28, "Input"],
+Cell[1391, 46, 262, 5, 28, "Input"],
+Cell[CellGroupData[{
+Cell[1678, 55, 260, 7, 28, "Input"],
+Cell[1941, 64, 243, 3, 28, "Output"]
 }, Open  ]],
-Cell[1758, 58, 328, 10, 28, "Input"],
+Cell[2199, 70, 328, 10, 28, "Input"],
 Cell[CellGroupData[{
-Cell[2111, 72, 1629, 47, 97, "Input"],
-Cell[3743, 121, 307, 8, 21, "Message"],
-Cell[4053, 131, 298, 7, 24, "Message"],
-Cell[4354, 140, 239, 4, 28, "Output"]
+Cell[2552, 84, 1688, 49, 97, "Input"],
+Cell[4243, 135, 307, 8, 21, "Message"],
+Cell[4553, 145, 298, 7, 24, "Message"],
+Cell[4854, 154, 239, 4, 28, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4630, 149, 482, 13, 28, "Input"],
-Cell[5115, 164, 490, 11, 21, "Message"],
-Cell[5608, 177, 259, 3, 28, "Output"]
+Cell[5130, 163, 482, 13, 28, "Input"],
+Cell[5615, 178, 490, 11, 21, "Message"],
+Cell[6108, 191, 259, 3, 28, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6416, 200, 105, 1, 35, "Subsubsection"],
+Cell[6524, 203, 137, 3, 28, "Input"],
+Cell[CellGroupData[{
+Cell[6686, 210, 1193, 32, 63, "Input"],
+Cell[7882, 244, 226, 4, 28, "Output"],
+Cell[8111, 250, 222, 4, 28, "Output"]
+}, Open  ]]
 }, Open  ]]
 }
 ]
