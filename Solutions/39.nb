@@ -1,0 +1,112 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2876,        103]
+NotebookOptionsPosition[      2408,         82]
+NotebookOutlinePosition[      2762,         98]
+CellTagsIndexPosition[      2719,         95]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Integer right triangles
+Problem 39
+
+If p is the perimeter of a right angle triangle with integral length sides, \
+{a, b, c}, there are exactly three solutions for p = 120.
+
+{20, 48, 52}, {24, 45, 51}, {30, 40, 50}
+
+For which value of p <= 1000, is the number of solutions maximised?\
+\>", "Text",
+ CellChangeTimes->{{3.6556441084814253`*^9, 3.65564411031483*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"maxP", "=", "1000"}], ";"}]], "Input",
+ CellChangeTimes->{{3.655644082496688*^9, 3.655644085191614*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"trianglesForLength", "[", "p_", "]"}], ":=", 
+  RowBox[{"Solve", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"a", "+", "b", "+", "c"}], "\[Equal]", "p"}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"a", "^", "2"}], "+", 
+        RowBox[{"b", "^", "2"}]}], "\[Equal]", 
+       RowBox[{"c", "^", "2"}]}], ",", 
+      RowBox[{"0", "<", "a", "<", "b", "<", "c"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"a", ",", "b", ",", "c"}], "}"}], ",", "Integers"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.6556427971874857`*^9, 3.6556429091507807`*^9}, {
+  3.655642994988102*^9, 3.6556430001826897`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"triangleLengthes", "[", "p_", "]"}], ":=", 
+  RowBox[{"Length", "@", 
+   RowBox[{"trianglesForLength", "[", "p", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.655643371537932*^9, 3.655643390489314*^9}, 
+   3.655643578246818*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Ordering", "[", 
+  RowBox[{
+   RowBox[{"triangleLengthes", "/@", 
+    RowBox[{"Range", "[", "maxP", "]"}]}], ",", 
+   RowBox[{"-", "1"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6556440748429832`*^9, 3.655644090138113*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", "840", "}"}]], "Output",
+ CellChangeTimes->{3.655644141179914*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 707},
+WindowMargins->{{76, Automatic}, {36, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 373, 11, 182, "Text"],
+Cell[934, 33, 139, 3, 28, "Input"],
+Cell[1076, 38, 683, 19, 46, "Input"],
+Cell[1762, 59, 260, 6, 28, "Input"],
+Cell[CellGroupData[{
+Cell[2047, 69, 248, 6, 28, "Input"],
+Cell[2298, 77, 94, 2, 28, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
