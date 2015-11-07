@@ -1,0 +1,126 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3673,        117]
+NotebookOptionsPosition[      3162,         95]
+NotebookOutlinePosition[      3519,        111]
+CellTagsIndexPosition[      3476,        108]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Amicable numbers
+Problem 21
+
+Let d (n) be defined as the sum of proper divisors of n (numbers less than n \
+which divide evenly into n).If d (a) = b and d (b) = a, where a != b, then a \
+and b are an amicable pair and each of a and b are called amicable \
+numbers.For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, \
+22, 44, 55 and 110; therefore d (220) = 284. The proper divisors of 284 are \
+1, 2, 4, 71 and 142; so d (284) = 220.
+
+Evaluate the sum of all the amicable numbers under 10000.
+\
+\>", "Text",
+ CellChangeTimes->{{3.655915256918602*^9, 3.655915259131016*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"totalDivisors", "[", "n_Integer", "]"}], ":=", 
+  RowBox[{"Total", "@", 
+   RowBox[{"Most", "@", 
+    RowBox[{"Divisors", "@", "n"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.655890101437006*^9, 3.655890128629177*^9}, {
+  3.6559147204496183`*^9, 3.6559147213211927`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"maxN", "=", "10000"}], ";"}]], "Input",
+ CellChangeTimes->{
+  3.6558901313652897`*^9, {3.655890178310588*^9, 3.655890185084988*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"testAmicable", "[", 
+   RowBox[{"a_", ",", "b_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"totalDivisors", "[", "a", "]"}], "\[Equal]", "b"}], "&&", 
+   RowBox[{"a", "\[LessEqual]", "maxN"}], "&&", 
+   RowBox[{"b", "\[LessEqual]", "maxN"}], "&&", 
+   RowBox[{"a", "\[NotEqual]", "b"}]}]}]], "Input",
+ CellChangeTimes->{{3.655890061029992*^9, 3.6558900882671213`*^9}, {
+  3.655914541277464*^9, 3.655914549524556*^9}, {3.655914595880805*^9, 
+  3.655914621063629*^9}, {3.655914782514258*^9, 3.655914782768301*^9}, {
+  3.65591486141562*^9, 3.655914896941772*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"testAmicableCons", "[", "a_", "]"}], ":=", 
+  RowBox[{"testAmicable", "[", 
+   RowBox[{
+    RowBox[{"totalDivisors", "[", "a", "]"}], ",", "a"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.655914577204537*^9, 3.655914612089974*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Cases", "[", 
+   RowBox[{
+    RowBox[{"Range", "[", 
+     RowBox[{"2", ",", "maxN"}], "]"}], ",", 
+    RowBox[{"a_", "/;", 
+     RowBox[{"testAmicableCons", "[", "a", "]"}]}]}], "]"}], "//", 
+  "Total"}]], "Input",
+ CellChangeTimes->{{3.655914638457683*^9, 3.65591465672921*^9}, {
+  3.655914757130374*^9, 3.655914757743741*^9}, {3.6559152751616993`*^9, 
+  3.6559152753108253`*^9}}],
+
+Cell[BoxData["31626"], "Output",
+ CellChangeTimes->{
+  3.655914657186508*^9, {3.655914732426045*^9, 3.655914785207955*^9}, 
+   3.655914868380178*^9, 3.655914898885557*^9, 3.655915276123547*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 699},
+WindowMargins->{{159, Automatic}, {-188, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 600, 14, 201, "Text"],
+Cell[1161, 36, 303, 7, 28, "Input"],
+Cell[1467, 45, 167, 4, 28, "Input"],
+Cell[1637, 51, 604, 13, 28, "Input"],
+Cell[2244, 66, 265, 6, 28, "Input"],
+Cell[CellGroupData[{
+Cell[2534, 76, 416, 11, 28, "Input"],
+Cell[2953, 89, 193, 3, 28, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
