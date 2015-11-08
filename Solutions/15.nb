@@ -10,17 +10,37 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[       775,         34]
-NotebookOptionsPosition[       561,         21]
-NotebookOutlinePosition[       915,         37]
-CellTagsIndexPosition[       872,         34]
+NotebookDataLength[      1543,         59]
+NotebookOptionsPosition[      1185,         41]
+NotebookOutlinePosition[      1541,         57]
+CellTagsIndexPosition[      1498,         54]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+Cell["\<\
+Lattice paths
+Problem 15
+
+Starting in the top left corner of a 2*2 grid, and only being able to move to \
+the right and down, there are exactly 6 routes to the bottom right corner.How \
+many such routes are there through a 20*20 grid?\
+\>", "Text",
+ CellChangeTimes->{{3.655950284063287*^9, 3.655950286288795*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Binomial", "[", 
+  RowBox[{"40", ",", "20"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6559502613131742`*^9, 3.655950273512301*^9}}],
+
+Cell[BoxData["137846528820"], "Output",
+ CellChangeTimes->{{3.655950264980958*^9, 3.655950273835266*^9}}]
+}, Open  ]]
 },
 WindowSize->{808, 705},
-WindowMargins->{{20, Automatic}, {Automatic, 44}},
+WindowMargins->{{196, Automatic}, {-46, Automatic}},
 FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
 2014)",
 StyleDefinitions->"Default.nb"
@@ -36,9 +56,13 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
+Cell[558, 20, 324, 8, 106, "Text"],
+Cell[CellGroupData[{
+Cell[907, 32, 154, 3, 28, "Input"],
+Cell[1064, 37, 105, 1, 28, "Output"]
+}, Open  ]]
 }
 ]
 *)
 
 (* End of internal cache information *)
-
