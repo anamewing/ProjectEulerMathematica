@@ -1,0 +1,151 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4229,        142]
+NotebookOptionsPosition[      3679,        119]
+NotebookOutlinePosition[      4035,        135]
+CellTagsIndexPosition[      3992,        132]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Number spiral diagonals
+Problem 28
+
+Starting with the number 1 and moving to the right in a clockwise direction a \
+5 by 5 spiral is formed as follows : 21 22 23 24 25
+20 7 8 9 10
+19 6 1 2 11
+18 5 4 3 12
+17 16 15 14 13
+
+It can be verified that the sum of the numbers on the diagonals is 101.
+
+What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral \
+formed in the same way?\
+\>", "Text",
+ CellChangeTimes->{{3.655968700686047*^9, 3.6559687024279327`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"numPatternLists", "=", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "3", ",", "13"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "5", ",", "17"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "7", ",", "21"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "9", ",", "25"}], "}"}]}], "\[IndentingNewLine]", 
+    "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.655968716260618*^9, 3.655968758178657*^9}, {
+  3.655969534033535*^9, 3.6559695342012873`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"symPattern", "=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "x", ",", 
+     RowBox[{"x", "^", "2"}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.655968939704624*^9, 3.655968946917345*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"polynomialFit", "[", "numP_List", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Fit", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Range", "[", "3", "]"}], ",", "numP"}], "}"}], "//", 
+      "Transpose"}], ",", "symPattern", ",", "x"}], "]"}], "//", 
+   "Round"}]}]], "Input",
+ CellChangeTimes->{{3.655968977873502*^9, 3.655969044059389*^9}, {
+  3.655969181577157*^9, 3.6559691834208107`*^9}, {3.655969480829954*^9, 
+  3.6559695036439877`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"maxN", "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1001", "+", "1"}], ")"}], "/", "2"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.655969099998242*^9, 3.655969102754177*^9}, {
+  3.655969378003553*^9, 3.655969392924181*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"polynomialFit", "[", "#", "]"}], "/.", 
+         RowBox[{"x", "\[Rule]", 
+          RowBox[{"Range", "[", "maxN", "]"}]}]}], "//", "Total"}], ")"}], 
+      "&"}], "/@", "numPatternLists"}], "//", "Total"}], ")"}], "-", 
+  "3"}]], "Input",
+ CellChangeTimes->{{3.65596920738124*^9, 3.6559692324593287`*^9}}],
+
+Cell[BoxData["669171001"], "Output",
+ CellChangeTimes->{{3.65596921356185*^9, 3.655969232707712*^9}, 
+   3.655969394890822*^9, 3.655969429988138*^9, 3.655969511804718*^9, {
+   3.6559695455591793`*^9, 3.6559695546391*^9}}]
+}, Open  ]],
+
+Cell["\<\
+Here minus three for the first number \[OpenCurlyDoubleQuote]1\
+\[CloseCurlyDoubleQuote] has been counted for 4 times.\
+\>", "Text",
+ CellChangeTimes->{{3.6559695746731853`*^9, 3.655969615406591*^9}, {
+  3.655969656449851*^9, 3.655969659337358*^9}}]
+},
+WindowSize->{808, 701},
+WindowMargins->{{144, Automatic}, {-24, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 483, 16, 258, "Text"],
+Cell[1044, 38, 643, 15, 114, "Input"],
+Cell[1690, 55, 227, 6, 28, "Input"],
+Cell[1920, 63, 511, 14, 28, "Input"],
+Cell[2434, 79, 263, 7, 28, "Input"],
+Cell[CellGroupData[{
+Cell[2722, 90, 455, 14, 28, "Input"],
+Cell[3180, 106, 221, 3, 28, "Output"]
+}, Open  ]],
+Cell[3416, 112, 259, 5, 30, "Text"]
+}
+]
+*)
+
+(* End of internal cache information *)
