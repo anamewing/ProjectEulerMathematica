@@ -1,0 +1,123 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3698,        114]
+NotebookOptionsPosition[      3262,         94]
+NotebookOutlinePosition[      3618,        110]
+CellTagsIndexPosition[      3575,        107]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Number letter counts
+Problem 17
+
+If the numbers 1 to 5 are written out in words : one, two, three, four, five, \
+then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total.If all the \
+numbers from 1 to 1000 (one thousand) inclusive were written out in words, \
+how many letters would be used?NOTE : Do not count spaces or hyphens.For \
+example, 342 (three hundred and forty - two) contains 23 letters and 115 (one \
+hundred and fifteen) contains 20 letters.The use of \"and\" when writing out \
+numbers is in compliance with British usage.\
+\>", "Text",
+ CellChangeTimes->{{3.6559500561694727`*^9, 3.6559500581397943`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"integerNameLength", "[", "n_Integer", "]"}], ":=", 
+  RowBox[{"Length", "@", 
+   RowBox[{"Select", "[", 
+    RowBox[{
+     RowBox[{"Characters", "@", 
+      RowBox[{"IntegerName", "[", 
+       RowBox[{"n", ",", "\"\<Words\>\""}], "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"MemberQ", "[", 
+       RowBox[{
+        RowBox[{"CharacterRange", "[", 
+         RowBox[{"\"\<a\>\"", ",", "\"\<z\>\""}], "]"}], ",", "#"}], "]"}], 
+      "&"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.655948840648262*^9, 3.655948956493249*^9}, {
+   3.655949027170618*^9, 3.65594902970433*^9}, {3.655949086459999*^9, 
+   3.6559490899617853`*^9}, {3.6559491858265038`*^9, 3.655949199385915*^9}, {
+   3.655949385134614*^9, 3.655949437450532*^9}, {3.655949484130816*^9, 
+   3.655949485670485*^9}, {3.655949668819682*^9, 3.655949679321876*^9}, {
+   3.655949757183379*^9, 3.655949819121315*^9}, {3.655949903779236*^9, 
+   3.655949922929826*^9}, 3.655950015157312*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"integerNameLength", "[", "n_Integer", "]"}], "/;", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"n", ">", "100"}], "&&", 
+     RowBox[{"!", 
+      RowBox[{"Divisible", "[", 
+       RowBox[{"n", ",", "100"}], "]"}]}]}], ")"}]}], ":=", 
+  RowBox[{
+   RowBox[{"Length", "@", 
+    RowBox[{"Select", "[", 
+     RowBox[{
+      RowBox[{"Characters", "@", 
+       RowBox[{"IntegerName", "[", 
+        RowBox[{"n", ",", "\"\<Words\>\""}], "]"}]}], ",", 
+      RowBox[{
+       RowBox[{"MemberQ", "[", 
+        RowBox[{
+         RowBox[{"CharacterRange", "[", 
+          RowBox[{"\"\<a\>\"", ",", "\"\<z\>\""}], "]"}], ",", "#"}], "]"}], 
+       "&"}]}], "]"}]}], "+", "3"}]}]], "Input",
+ CellChangeTimes->{{3.655950000529502*^9, 3.6559500099553947`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"integerNameLength", "/@", 
+   RowBox[{"Range", "[", "1000", "]"}]}], "//", "Total"}]], "Input"],
+
+Cell[BoxData["21124"], "Output",
+ CellChangeTimes->{3.655949841364891*^9, 3.655949911850316*^9, 
+  3.6559500232802973`*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 701},
+WindowMargins->{{313, Automatic}, {-47, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 635, 12, 163, "Text"],
+Cell[1196, 34, 976, 21, 63, "Input"],
+Cell[2175, 57, 790, 23, 63, "Input"],
+Cell[CellGroupData[{
+Cell[2990, 84, 130, 3, 28, "Input"],
+Cell[3123, 89, 123, 2, 28, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
