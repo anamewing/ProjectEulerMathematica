@@ -1,0 +1,77 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      1883,         67]
+NotebookOptionsPosition[      1525,         49]
+NotebookOutlinePosition[      1879,         65]
+CellTagsIndexPosition[      1836,         62]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Lexicographic permutations
+Problem 24
+
+A permutation is an ordered arrangement of objects.For example, 3124 is one \
+possible permutation of the digits 1, 2, 3 and 4. If all of the permutations \
+are listed numerically or alphabetically, we call it lexicographic order.The \
+lexicographic permutations of 0, 1 and 2 are : 012 021 102 120 201 210
+
+What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, \
+5, 6, 7, 8 and 9?\
+\>", "Text",
+ CellChangeTimes->{{3.655968590786386*^9, 3.655968592655773*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Permutations", "[", 
+    RowBox[{"Range", "[", 
+     RowBox[{"0", ",", "9"}], "]"}], "]"}], "[", 
+   RowBox[{"[", "1000000", "]"}], "]"}], "//", "FromDigits"}]], "Input",
+ CellChangeTimes->{{3.6559685463533688`*^9, 3.655968575386448*^9}}],
+
+Cell[BoxData["2783915460"], "Output",
+ CellChangeTimes->{{3.655968567124484*^9, 3.6559685757844267`*^9}}]
+}, Open  ]]
+},
+WindowSize->{808, 701},
+WindowMargins->{{28, Automatic}, {36, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 533, 12, 163, "Text"],
+Cell[CellGroupData[{
+Cell[1116, 36, 285, 7, 28, "Input"],
+Cell[1404, 45, 105, 1, 28, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
