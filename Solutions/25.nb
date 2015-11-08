@@ -1,0 +1,102 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2317,         92]
+NotebookOptionsPosition[      1955,         74]
+NotebookOutlinePosition[      2312,         90]
+CellTagsIndexPosition[      2269,         87]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+1000 - digit Fibonacci number
+Problem 25
+
+The Fibonacci sequence is defined by the recurrence relation : Fn = Fn \
+\[Minus] 1 + Fn \[Minus] 2, where F1 = 1 and F2 = 1.
+
+Hence the first 12 terms will be : F1 = 1
+F2 = 1
+F3 = 2
+F4 = 3
+F5 = 5
+F6 = 8
+F7 = 13
+F8 = 21
+F9 = 34
+F10 = 55
+F11 = 89
+F12 = 144
+
+The 12 th term, F12, is the first term to contain three digits.What is the \
+index of the first term in the Fibonacci sequence to contain 1000 digits?\
+\>", "Text",
+ CellChangeTimes->{{3.6559683128371553`*^9, 3.65596831527913*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Fibonacci", "[", "#", "]"}], "//", "IntegerDigits"}], "//", 
+       "Length"}], ")"}], "&"}], "/@", 
+    RowBox[{"Range", "@", "10000"}]}], "//", 
+   RowBox[{
+    RowBox[{"Position", "[", 
+     RowBox[{"#", ",", 
+      RowBox[{"n_", "/;", 
+       RowBox[{"n", ">=", "1000"}]}]}], "]"}], "&"}]}], "//", 
+  "First"}]], "Input",
+ CellChangeTimes->{{3.655968086155615*^9, 3.655968178230466*^9}, {
+  3.655968217854733*^9, 3.6559682422850533`*^9}, {3.655968280479887*^9, 
+  3.655968303497176*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", "4782", "}"}]], "Output",
+ CellChangeTimes->{{3.6559680985640697`*^9, 3.655968155197344*^9}, 
+   3.6559682430878963`*^9, {3.655968290701798*^9, 3.655968303969211*^9}}]
+}, Open  ]]
+},
+WindowSize->{808, 701},
+WindowMargins->{{Automatic, 287}, {-167, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 540, 23, 391, "Text"],
+Cell[CellGroupData[{
+Cell[1123, 47, 618, 19, 46, "Input"],
+Cell[1744, 68, 195, 3, 28, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
