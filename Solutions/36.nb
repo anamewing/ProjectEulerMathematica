@@ -1,0 +1,122 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3227,        112]
+NotebookOptionsPosition[      2685,         89]
+NotebookOutlinePosition[      3040,        105]
+CellTagsIndexPosition[      2997,        102]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Double - base palindromes
+Problem 36
+
+The decimal number, 585 = 10010010012 (binary), is palindromic in both \
+bases.Find the sum of all numbers, less than one million, which are \
+palindromic in base 10 and base 2.
+
+(Please note that the palindromic number, in either base, may not include \
+leading zeros.)
+\
+\>", "Text",
+ CellChangeTimes->{{3.6559732357328167`*^9, 3.655973237519382*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"testReverse", "[", "list_List", "]"}], ":=", 
+   RowBox[{"list", "\[Equal]", 
+    RowBox[{"Reverse", "@", "list"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6559730337095213`*^9, 3.655973051591172*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"palindromesBase", "[", 
+    RowBox[{"n_Integer", ",", "base_Integer"}], "]"}], ":=", 
+   RowBox[{"testReverse", "@", 
+    RowBox[{"IntegerDigits", "[", 
+     RowBox[{"n", ",", "base"}], "]"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.655972958363896*^9, 3.6559730258261013`*^9}, {
+  3.65597305948164*^9, 3.655973063950632*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"testDoublePalindromes", "[", "n_Integer", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"palindromesBase", "[", 
+     RowBox[{"n", ",", "2"}], "]"}], "&&", 
+    RowBox[{"palindromesBase", "[", 
+     RowBox[{"n", ",", "10"}], "]"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.655973069951149*^9, 3.655973102494299*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"maxN", "=", "1000000"}], ";"}]], "Input",
+ CellChangeTimes->{{3.655973159907565*^9, 3.655973170486068*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"palindromesList", "=", 
+   RowBox[{"Cases", "[", 
+    RowBox[{
+     RowBox[{"Range", "[", 
+      RowBox[{"1", ",", "maxN", ",", "2"}], "]"}], ",", 
+     RowBox[{"_", "?", "testDoublePalindromes"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6559731317661448`*^9, 3.6559732079670467`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Total", "@", "palindromesList"}]], "Input",
+ CellChangeTimes->{{3.6559732131020193`*^9, 3.6559732165803003`*^9}}],
+
+Cell[BoxData["872187"], "Output",
+ CellChangeTimes->{3.65597321716321*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 701},
+WindowMargins->{{156, Automatic}, {Automatic, 24}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 401, 12, 163, "Text"],
+Cell[962, 34, 251, 6, 28, "Input"],
+Cell[1216, 42, 376, 9, 28, "Input"],
+Cell[1595, 53, 357, 9, 28, "Input"],
+Cell[1955, 64, 142, 3, 28, "Input"],
+Cell[2100, 69, 330, 8, 28, "Input"],
+Cell[CellGroupData[{
+Cell[2455, 81, 137, 2, 28, "Input"],
+Cell[2595, 85, 74, 1, 28, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
