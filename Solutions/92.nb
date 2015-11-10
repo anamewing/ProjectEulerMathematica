@@ -1,0 +1,213 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6800,        204]
+NotebookOptionsPosition[      6060,        176]
+NotebookOutlinePosition[      6415,        192]
+CellTagsIndexPosition[      6372,        189]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Square digit chains
+Problem 92
+
+A number chain is created by continuously adding the square of the digits in \
+a number to form a new number until it has been seen before.For example, 44 \
+\[RightArrow] 32 \[RightArrow] 13 \[RightArrow] 10 \[RightArrow] 1 \
+\[RightArrow] 1
+85 \[RightArrow] 89 \[RightArrow] 145 \[RightArrow] 42 \[RightArrow] 20 \
+\[RightArrow] 4 \[RightArrow] 16 \[RightArrow] 37 \[RightArrow] 58 \
+\[RightArrow] 89
+
+Therefore any chain that arrives at 1 or 89 will become stuck in an endless \
+loop.What is most amazing is that EVERY starting number will eventually \
+arrive at 1 or 89.
+
+How many starting numbers below ten million will arrive at 89?\
+\>", "Text",
+ CellChangeTimes->{{3.656109644757615*^9, 3.656109646829342*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"f", "[", "n_Integer", "]"}], ":=", 
+  RowBox[{"Total", "@", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Power", "[", 
+       RowBox[{"#", ",", "2"}], "]"}], "&"}], "/@", 
+     RowBox[{"IntegerDigits", "@", "n"}]}], ")"}]}]}]], "Input",
+ CellChangeTimes->{{3.6561096487973337`*^9, 3.656109687524634*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"squareEnd", "[", "n_Integer", "]"}], ":=", 
+   RowBox[{"squareEnd", "[", 
+    RowBox[{"f", "[", "n", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"squareEnd", "[", "1", "]"}], "=", "1"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"squareEnd", "[", "89", "]"}], "=", "89"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.656111569088393*^9, 3.6561116029688063`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"maxN", "=", "10000000"}], ";"}], "\[IndentingNewLine]"}]], "Input",\
+
+ CellChangeTimes->{{3.656109744369779*^9, 3.6561097946779127`*^9}, 
+   3.65611028624666*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"squareList", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Power", "[", 
+      RowBox[{"#", ",", "2"}], "]"}], "&"}], "/@", 
+    RowBox[{"Range", "[", "9", "]"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6561113234401617`*^9, 3.6561113374572363`*^9}, {
+  3.656112050877363*^9, 3.656112050987934*^9}, {3.6561121786664677`*^9, 
+  3.656112178797686*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"maxDigits", "=", "7"}], ";"}]], "Input",
+ CellChangeTimes->{{3.6561141388106613`*^9, 3.65611414381415*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"permutateWithZerosLength", "[", "list_List", "]"}], ":=", 
+  RowBox[{"Binomial", "[", 
+   RowBox[{"maxDigits", ",", 
+    RowBox[{"Length", "@", "list"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.656114006871986*^9, 3.6561140083710213`*^9}, 
+   3.656114046760812*^9, {3.6561141634808283`*^9, 3.656114181984446*^9}, {
+   3.656114288772718*^9, 3.656114302790612*^9}, {3.656114341380851*^9, 
+   3.656114378683201*^9}, 3.656115173003347*^9, {3.656115548711845*^9, 
+   3.656115550951333*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ans", "=", "0"}], ";"}]], "Input",
+ CellChangeTimes->{{3.656115251975556*^9, 3.656115254433361*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Do", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"squareCandidate", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"GroupBy", "[", 
+        RowBox[{"#", ",", "First", ",", 
+         RowBox[{
+          RowBox[{"Last", "/@", "#"}], "&"}]}], "]"}], "&"}], "@", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Total", "/@", 
+           RowBox[{"Tuples", "[", 
+            RowBox[{"squareList", ",", "usingDigits"}], "]"}]}], ",", 
+          RowBox[{"Tuples", "[", 
+           RowBox[{
+            RowBox[{"Range", "[", "9", "]"}], ",", "usingDigits"}], "]"}]}], 
+         "}"}], "//", "Transpose"}], ")"}]}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"squareCandidateDigits", "=", 
+     RowBox[{"Flatten", "[", 
+      RowBox[{
+       RowBox[{"squareCandidate", "/@", 
+        RowBox[{"Select", "[", 
+         RowBox[{
+          RowBox[{"Keys", "[", "squareCandidate", "]"}], ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"squareEnd", "@", "#"}], "\[Equal]", "89"}], "&"}]}], 
+         "]"}]}], ",", "1"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"ans", "=", 
+     RowBox[{"ans", "+", 
+      RowBox[{"Total", "@", 
+       RowBox[{"(", 
+        RowBox[{"permutateWithZerosLength", "/@", "squareCandidateDigits"}], 
+        ")"}]}]}]}], ";"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"usingDigits", ",", "1", ",", "7"}], "}"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.656115224096352*^9, 3.656115275249856*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["ans"], "Input",
+ CellChangeTimes->{{3.6561153143608913`*^9, 3.656115314486053*^9}}],
+
+Cell[BoxData["8581146"], "Output",
+ CellChangeTimes->{3.656115314904354*^9, 3.656115576692271*^9}]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.656111351930188*^9, 3.656111364936722*^9}, {
+   3.656111895127535*^9, 3.656111973504035*^9}, {3.656112018339364*^9, 
+   3.656112020048517*^9}, {3.6561120608491793`*^9, 3.6561120672275887`*^9}, {
+   3.656112181436531*^9, 3.656112181550487*^9}, {3.65611228070218*^9, 
+   3.656112310831451*^9}, {3.6561139259424133`*^9, 3.6561139626450453`*^9}, {
+   3.656114068070321*^9, 3.656114096818033*^9}, {3.656114148895053*^9, 
+   3.6561141511249104`*^9}, {3.656114589391061*^9, 3.6561145909908543`*^9}, 
+   3.656115230867962*^9}],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.656114000332594*^9, 3.656114049933261*^9}, 
+   3.656115236818873*^9}]
+},
+WindowSize->{808, 703},
+WindowMargins->{{Automatic, 266}, {34, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 759, 18, 220, "Text"],
+Cell[1320, 40, 354, 10, 28, "Input"],
+Cell[1677, 52, 465, 13, 63, "Input"],
+Cell[2145, 67, 209, 6, 46, "Input"],
+Cell[2357, 75, 387, 10, 28, "Input"],
+Cell[2747, 87, 142, 3, 28, "Input"],
+Cell[2892, 92, 523, 10, 28, "Input"],
+Cell[3418, 104, 135, 3, 28, "Input"],
+Cell[3556, 109, 1574, 42, 165, "Input"],
+Cell[CellGroupData[{
+Cell[5155, 155, 97, 1, 28, "Input"],
+Cell[5255, 158, 98, 1, 28, "Output"]
+}, Open  ]],
+Cell[5368, 162, 567, 8, 28, "Input"],
+Cell[5938, 172, 118, 2, 28, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
