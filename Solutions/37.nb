@@ -1,0 +1,146 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4121,        137]
+NotebookOptionsPosition[      3504,        111]
+NotebookOutlinePosition[      3859,        127]
+CellTagsIndexPosition[      3816,        124]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Truncatable primes
+Problem 37
+
+The number 3797 has an interesting property.Being prime itself, it is \
+possible to continuously remove digits from left to right, and remain prime \
+at each stage : 3797, 797, 97, and 7. Similarly we can work from right to \
+left : 3797, 379, 37, and 3.
+
+Find the sum of the only eleven primes that are both truncatable from left to \
+right and right to left.NOTE : 2, 3, 5, and 7 are not considered to be \
+truncatable primes.\
+\>", "Text",
+ CellChangeTimes->{{3.656607978074239*^9, 3.656607979934226*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"partGen", "[", "n_Integer", "]"}], ":=", 
+  RowBox[{"Join", "[", 
+   RowBox[{
+    RowBox[{"Range", "/@", 
+     RowBox[{"Range", "@", "n"}]}], ",", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Range", "[", 
+       RowBox[{"#", ",", "n"}], "]"}], "&"}], "/@", 
+     RowBox[{"Range", "[", 
+      RowBox[{"2", ",", "n"}], "]"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.656607358537004*^9, 3.656607463770721*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"testPartPrime", "[", "n_Integer", "]"}], ":=", 
+  RowBox[{"And", "@@", 
+   RowBox[{"PrimeQ", "@", 
+    RowBox[{"(", 
+     RowBox[{"FromDigits", "/@", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Part", "[", 
+          RowBox[{
+           RowBox[{"IntegerDigits", "@", "n"}], ",", "#"}], "]"}], "&"}], "/@", 
+        RowBox[{"partGen", "[", 
+         RowBox[{"Length", "@", 
+          RowBox[{"IntegerDigits", "@", "n"}]}], "]"}]}], ")"}]}], 
+     ")"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.656607490944779*^9, 3.656607530877442*^9}, {
+   3.656607593814258*^9, 3.656607681099544*^9}, 3.656607746489403*^9, {
+   3.656607797612866*^9, 3.656607806440502*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"maxN", "=", "100000"}], ";"}]], "Input",
+ CellChangeTimes->{{3.656607823131205*^9, 3.6566078269033003`*^9}, {
+  3.6566078735444937`*^9, 3.656607874839253*^9}, {3.656607924190976*^9, 
+  3.656607937678439*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"resList", "=", 
+  RowBox[{"Cases", "[", 
+   RowBox[{
+    RowBox[{"Prime", "@", 
+     RowBox[{"Range", "[", 
+      RowBox[{"5", ",", "maxN"}], "]"}]}], ",", 
+    RowBox[{"_", "?", "testPartPrime"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.656607847767654*^9, 3.656607911842285*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "23", ",", "37", ",", "53", ",", "73", ",", "313", ",", "317", ",", "373", 
+   ",", "797", ",", "3137", ",", "3797", ",", "739397"}], "}"}]], "Output",
+ CellChangeTimes->{{3.656607912259491*^9, 3.656607944619713*^9}}]
+}, Open  ]],
+
+Cell["5 means don\[CloseCurlyQuote]t want 2,3,5,7 .", "Text",
+ CellChangeTimes->{{3.656607986654903*^9, 3.65660800656754*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Total", "@", "resList"}]], "Input",
+ CellChangeTimes->{{3.656607959541521*^9, 3.656607962402952*^9}}],
+
+Cell[BoxData["748317"], "Output",
+ CellChangeTimes->{3.656607962855034*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 706},
+WindowMargins->{{159, Automatic}, {-2, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 549, 13, 182, "Text"],
+Cell[1110, 35, 446, 13, 28, "Input"],
+Cell[1559, 50, 719, 19, 63, "Input"],
+Cell[2281, 71, 243, 5, 28, "Input"],
+Cell[CellGroupData[{
+Cell[2549, 80, 308, 8, 28, "Input"],
+Cell[2860, 90, 259, 5, 28, "Output"]
+}, Open  ]],
+Cell[3134, 98, 126, 1, 30, "Text"],
+Cell[CellGroupData[{
+Cell[3285, 103, 125, 2, 28, "Input"],
+Cell[3413, 107, 75, 1, 28, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
