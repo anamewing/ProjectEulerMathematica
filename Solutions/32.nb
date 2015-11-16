@@ -1,0 +1,245 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7073,        236]
+NotebookOptionsPosition[      6193,        200]
+NotebookOutlinePosition[      6549,        216]
+CellTagsIndexPosition[      6506,        213]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Pandigital products
+Problem 32
+
+We shall say that an n - digit number is pandigital if it makes use of all \
+the digits 1 to n exactly once; for example, the 5 - digit number, 15234, is \
+1 through 5 pandigital.The product 7254 is unusual, as the identity, 39*186 = \
+7254, containing multiplicand, multiplier, and product is 1 through 9 \
+pandigital.Find the sum of all products whose multiplicand/multiplier/product \
+identity can be written as a 1 through 9 pandigital.HINT : Some products can \
+be obtained in more than one way so be sure to only include it once in your \
+sum.\
+\>", "Text",
+ CellChangeTimes->{{3.6566677784698772`*^9, 3.656667780373065*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"consNumList", "[", 
+   RowBox[{"a_", ",", "b_", ",", "c_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Join", "[", 
+    RowBox[{
+     RowBox[{"IntegerDigits", "/@", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "b", ",", "c"}], "}"}]}], ",", 
+     RowBox[{"{", "0", "}"}]}], "]"}], "//", "Flatten"}]}]], "Input",
+ CellChangeTimes->{{3.656666090328683*^9, 3.6566662323540573`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"checkPandigital", "[", "list_List", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"Length", "@", "list"}], "\[Equal]", "10"}], ")"}], "&&", 
+   RowBox[{
+    RowBox[{"Signature", "@", "list"}], "!=", "0"}]}]}]], "Input",
+ CellChangeTimes->{{3.656666240999627*^9, 3.6566662717076406`*^9}, {
+  3.65666642987962*^9, 3.656666441501102*^9}, {3.656666559491353*^9, 
+  3.656666560123395*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"checkProduct", "[", 
+   RowBox[{"a_", ",", "b_"}], "]"}], ":=", 
+  RowBox[{"checkPandigital", "@", 
+   RowBox[{"consNumList", "[", 
+    RowBox[{"a", ",", "b", ",", 
+     RowBox[{"a", "*", "b"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.65666644668568*^9, 3.65666648307621*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+There are two different type :  one digit number * 4 digits, or 2 digits * 3 \
+digits.\
+\>", "Section",
+ CellChangeTimes->{{3.65666763179362*^9, 3.656667672024496*^9}, {
+   3.656667831279426*^9, 3.6566678390592413`*^9}, 3.656667877065998*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"resList1", "=", 
+  RowBox[{"Cases", "[", 
+   RowBox[{
+    RowBox[{"Flatten", "[", 
+     RowBox[{
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"i", ",", "j"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "10", ",", "100"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"j", ",", "100", ",", "1000"}], "}"}]}], "]"}], ",", "1"}], 
+     "]"}], ",", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a_", ",", "b_"}], "}"}], "/;", 
+     RowBox[{"checkProduct", "[", 
+      RowBox[{"a", ",", "b"}], "]"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.656666599189204*^9, 3.656666682704336*^9}, {
+   3.656666715172489*^9, 3.656666715378742*^9}, 3.656666895802515*^9, 
+   3.656667589187114*^9, 3.656667621864278*^9, {3.6566676827388163`*^9, 
+   3.656667696376665*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"12", ",", "483"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"18", ",", "297"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"27", ",", "198"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"28", ",", "157"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"39", ",", "186"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"42", ",", "138"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"48", ",", "159"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.656666903078578*^9, 3.656667618512721*^9, 
+  3.656667706498859*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"resList2", "=", 
+  RowBox[{"Cases", "[", 
+   RowBox[{
+    RowBox[{"Flatten", "[", 
+     RowBox[{
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"i", ",", "j"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", "10"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"j", ",", "1000", ",", "10000"}], "}"}]}], "]"}], ",", "1"}],
+      "]"}], ",", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a_", ",", "b_"}], "}"}], "/;", 
+     RowBox[{"checkProduct", "[", 
+      RowBox[{"a", ",", "b"}], "]"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.656667709285343*^9, 3.656667723840053*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"4", ",", "1738"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "1963"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.656667725826962*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"resProduct", "=", 
+  RowBox[{"DeleteDuplicates", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Times", "@@", "#"}], "&"}], "/@", 
+    RowBox[{"(", 
+     RowBox[{"Join", "[", 
+      RowBox[{"resList1", ",", "resList2"}], "]"}], ")"}]}], "]"}]}]], "Input",\
+
+ CellChangeTimes->{{3.6566667379313393`*^9, 3.656666760930915*^9}, {
+   3.656666794089576*^9, 3.656666794248583*^9}, 3.6566676842338877`*^9, {
+   3.656667731174884*^9, 3.6566677467360163`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "5796", ",", "5346", ",", "4396", ",", "7254", ",", "7632", ",", "6952", 
+   ",", "7852"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.656666761742434*^9, 3.656666794560996*^9, {3.656666886312963*^9, 
+   3.656666903131715*^9}, 3.65666774731092*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Total", "[", "resProduct", "]"}]], "Input",
+ CellChangeTimes->{{3.656666790521805*^9, 3.656666843005842*^9}}],
+
+Cell[BoxData["45228"], "Output",
+ CellChangeTimes->{3.656666844870319*^9, 3.656666903190516*^9, 
+  3.656667749236923*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 706},
+WindowMargins->{{197, Automatic}, {-92, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 673, 13, 163, "Text"],
+Cell[1234, 35, 410, 11, 28, "Input"],
+Cell[1647, 48, 441, 11, 28, "Input"],
+Cell[2091, 61, 316, 8, 28, "Input"],
+Cell[CellGroupData[{
+Cell[2432, 73, 252, 5, 99, "Section"],
+Cell[CellGroupData[{
+Cell[2709, 82, 847, 23, 46, "Input"],
+Cell[3559, 107, 576, 18, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4172, 130, 675, 20, 46, "Input"],
+Cell[4850, 152, 219, 7, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5106, 164, 473, 12, 28, "Input"],
+Cell[5582, 178, 289, 7, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5908, 190, 133, 2, 28, "Input"],
+Cell[6044, 194, 121, 2, 28, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
