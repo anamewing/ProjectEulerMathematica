@@ -1,0 +1,95 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2377,         86]
+NotebookOptionsPosition[      1944,         66]
+NotebookOutlinePosition[      2299,         82]
+CellTagsIndexPosition[      2256,         79]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Powerful digit sum
+Problem 56
+
+A googol (10^100) is a massive number : one followed by one - hundred zeros; \
+100^100 is almost unimaginably large : one followed by two - hundred \
+zeros.Despite their size, the sum of the digits in each number is only 1.
+
+Considering natural numbers of the form, ab, where a, b < 100, what is the \
+maximum digital sum?\
+\>", "Text",
+ CellChangeTimes->{{3.656751639562521*^9, 3.656751647269733*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"sumPowerDigits", "[", 
+   RowBox[{"a_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{"Total", "@", 
+   RowBox[{"IntegerDigits", "@", 
+    RowBox[{"(", 
+     RowBox[{"a", "^", "b"}], ")"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.6567515359392853`*^9, 3.656751560607884*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"resAll", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"sumPowerDigits", "[", 
+      RowBox[{"a", ",", "b"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", "100"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"b", ",", "100"}], "}"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.656751578055169*^9, 3.65675160312713*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Max", "@", "resAll"}]], "Input",
+ CellChangeTimes->{{3.656751609415801*^9, 3.656751613341909*^9}}],
+
+Cell[BoxData["972"], "Output",
+ CellChangeTimes->{3.656751613536791*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 691},
+WindowMargins->{{188, Automatic}, {-4, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 443, 11, 144, "Text"],
+Cell[1004, 33, 313, 8, 28, "Input"],
+Cell[1320, 43, 386, 11, 28, "Input"],
+Cell[CellGroupData[{
+Cell[1731, 58, 122, 2, 28, "Input"],
+Cell[1856, 62, 72, 1, 28, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
