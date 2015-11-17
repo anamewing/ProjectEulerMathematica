@@ -1,0 +1,267 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8568,        258]
+NotebookOptionsPosition[      7788,        229]
+NotebookOutlinePosition[      8143,        245]
+CellTagsIndexPosition[      8100,        242]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Sub - string divisibility
+Problem 43
+
+The number, 1406357289, is a 0 to 9 pandigital number because it is made up \
+of each of the digits 0 to 9 in some order, but it also has a rather \
+interesting sub - string divisibility property.Let d1 be the 1 st digit, d2 \
+be the 2 nd digit, and so on.In this way, we note the following : d2d3d4 = \
+406 is divisible by 2
+d3d4d5 = 063 is divisible by 3
+d4d5d6 = 635 is divisible by 5
+d5d6d7 = 357 is divisible by 7
+d6d7d8 = 572 is divisible by 11
+d7d8d9 = 728 is divisible by 13
+d8d9d10 = 289 is divisible by 17
+
+Find the sum of all 0 to 9 pandigital numbers with this property.\
+\>", "Text",
+ CellChangeTimes->{{3.656753833655933*^9, 3.656753835865635*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"checkPandigital", "[", 
+   RowBox[{"list_List", ",", "length_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"Length", "@", "list"}], "\[Equal]", "length"}], ")"}], "&&", 
+   RowBox[{
+    RowBox[{"Signature", "@", "list"}], "!=", "0"}], "&&", 
+   RowBox[{"AllTrue", "[", 
+    RowBox[{"list", ",", 
+     RowBox[{
+      RowBox[{"#", "<=", "length"}], "&"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.6566680726828003`*^9, 3.656668150014854*^9}, {
+  3.6566681922686243`*^9, 3.6566681940777893`*^9}, {3.656668319353614*^9, 
+  3.656668337347251*^9}, {3.656752305817402*^9, 3.656752305949142*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"checkPandigitalNumber", "[", "n_Integer", "]"}], ":=", 
+  RowBox[{"checkPandigital", "[", 
+   RowBox[{
+    RowBox[{"IntegerDigits", "@", "n"}], ",", 
+    RowBox[{"Length", "@", 
+     RowBox[{"IntegerDigits", "@", "n"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.656668157652701*^9, 3.656668245916772*^9}, {
+  3.656752290344207*^9, 3.656752297910111*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"testDivisible", "[", 
+   RowBox[{"n_Integer", ",", "k_Integer"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Divisible", "[", 
+    RowBox[{"n", ",", "k"}], "]"}], "&&", 
+   RowBox[{"99", "<", "n", "<", "1000"}]}]}]], "Input",
+ CellChangeTimes->{{3.6567517495348673`*^9, 3.656751821141036*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"maxN", "=", "1000"}], ";"}]], "Input",
+ CellChangeTimes->{{3.656751827900414*^9, 3.6567518309006977`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"testDivisible", "[", "k_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"testDivisible", "[", 
+    RowBox[{"#", ",", "k"}], "]"}], "&"}]}]], "Input",
+ CellChangeTimes->{{3.656751879024063*^9, 3.656751891327051*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"allowNum", "[", "k_", "]"}], ":=", 
+  RowBox[{"Cases", "[", 
+   RowBox[{
+    RowBox[{"Range", "[", "maxN", "]"}], ",", 
+    RowBox[{"_", "?", 
+     RowBox[{"(", 
+      RowBox[{"testDivisible", "[", "k", "]"}], ")"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6567519092068863`*^9, 3.6567519575723352`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"allowNum7", "=", 
+     RowBox[{"allowNum", "[", "7", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"allowNum17", "=", 
+     RowBox[{"allowNum", "[", "17", "]"}]}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.656752602273129*^9, 3.656752624183744*^9}, 
+   3.6567532138912773`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"allowNumWithDigits", "[", 
+   RowBox[{"k_", ",", "b_", ",", "c_"}], "]"}], ":=", 
+  RowBox[{"Cases", "[", 
+   RowBox[{
+    RowBox[{"FromDigits", "/@", 
+     RowBox[{"Permutations", "[", 
+      RowBox[{
+       RowBox[{"Complement", "[", 
+        RowBox[{
+         RowBox[{"Range", "[", 
+          RowBox[{"0", ",", "9"}], "]"}], ",", 
+         RowBox[{"IntegerDigits", "@", "b"}], ",", 
+         RowBox[{"IntegerDigits", "@", "c"}]}], "]"}], ",", 
+       RowBox[{"{", "4", "}"}]}], "]"}]}], ",", 
+    RowBox[{"n_", "/;", 
+     RowBox[{"Divisible", "[", 
+      RowBox[{"n", ",", "k"}], "]"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.656752837370829*^9, 3.65675294460277*^9}, {
+  3.656753194262545*^9, 3.656753204272586*^9}, {3.6567532775344667`*^9, 
+  3.656753277747115*^9}, {3.656753675781337*^9, 3.656753688752701*^9}, {
+  3.6567537222791758`*^9, 3.656753729827929*^9}, {3.656753770483735*^9, 
+  3.6567537719422503`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"testDiv", "[", "list_List", "]"}], ":=", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"Divisible", "[", 
+     RowBox[{
+      RowBox[{"FromDigits", "@", 
+       RowBox[{"list", "[", 
+        RowBox[{"[", 
+         RowBox[{"3", ";;", "5"}], "]"}], "]"}]}], ",", "3"}], "]"}], ")"}], "&&",
+    "\[IndentingNewLine]", 
+   RowBox[{"(", 
+    RowBox[{"Divisible", "[", 
+     RowBox[{
+      RowBox[{"FromDigits", "@", 
+       RowBox[{"list", "[", 
+        RowBox[{"[", 
+         RowBox[{"4", ";;", "6"}], "]"}], "]"}]}], ",", "5"}], "]"}], ")"}], "&&",
+    "\[IndentingNewLine]", 
+   RowBox[{"(", 
+    RowBox[{"Divisible", "[", 
+     RowBox[{
+      RowBox[{"FromDigits", "@", 
+       RowBox[{"list", "[", 
+        RowBox[{"[", 
+         RowBox[{"6", ";;", "8"}], "]"}], "]"}]}], ",", "11"}], "]"}], ")"}], 
+   "&&", "\[IndentingNewLine]", 
+   RowBox[{"(", 
+    RowBox[{"Divisible", "[", 
+     RowBox[{
+      RowBox[{"FromDigits", "@", 
+       RowBox[{"list", "[", 
+        RowBox[{"[", 
+         RowBox[{"7", ";;", "9"}], "]"}], "]"}]}], ",", "13"}], "]"}], 
+    ")"}]}]}]], "Input",
+ CellChangeTimes->{{3.6567519805558853`*^9, 3.656751988436409*^9}, {
+  3.65675204626511*^9, 3.656752058024034*^9}, {3.656752143544772*^9, 
+  3.6567521497901573`*^9}, {3.6567521909702377`*^9, 3.656752196637409*^9}, {
+  3.6567522270412073`*^9, 3.656752273524293*^9}, {3.656752312971911*^9, 
+  3.656752345052417*^9}, {3.6567523772837343`*^9, 3.656752394598686*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"test43", "[", "n_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"checkPandigitalNumber", "@", "n"}], "&&", 
+   RowBox[{"testDiv", "@", 
+    RowBox[{"IntegerDigits", "@", "n"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.6567521675449047`*^9, 3.6567522029030247`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"resAll", "=", 
+   RowBox[{"Cases", "[", 
+    RowBox[{
+     RowBox[{"Flatten", "@", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"10", "^", "6"}], "*", "a"}], "+", 
+         RowBox[{
+          RowBox[{"10", "^", "3"}], "*", "b"}], "+", "c"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"b", ",", "allowNum7"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"c", ",", "allowNum17"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"a", ",", 
+          RowBox[{"allowNumWithDigits", "[", 
+           RowBox[{"2", ",", "b", ",", "c"}], "]"}]}], "}"}]}], "]"}]}], ",", 
+     
+     RowBox[{"_", "?", "test43"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6567524177719507`*^9, 3.6567524807962418`*^9}, {
+  3.6567526279227753`*^9, 3.6567526346639147`*^9}, {3.65675275417657*^9, 
+  3.6567527599830017`*^9}, {3.656753225585286*^9, 3.656753238148492*^9}, {
+  3.656753443627412*^9, 3.656753449878564*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Total", "@", "resAll"}]], "Input",
+ CellChangeTimes->{{3.656753802716443*^9, 3.656753805649722*^9}}],
+
+Cell[BoxData["16695334890"], "Output",
+ CellChangeTimes->{3.65675380617234*^9, 3.656753873119192*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 691},
+WindowMargins->{{Automatic, 290}, {36, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 710, 18, 277, "Text"],
+Cell[1271, 40, 654, 16, 46, "Input"],
+Cell[1928, 58, 392, 9, 46, "Input"],
+Cell[2323, 69, 322, 8, 28, "Input"],
+Cell[2648, 79, 141, 3, 28, "Input"],
+Cell[2792, 84, 241, 6, 28, "Input"],
+Cell[3036, 92, 344, 9, 28, "Input"],
+Cell[3383, 103, 379, 10, 63, "Input"],
+Cell[3765, 115, 961, 23, 80, "Input"],
+Cell[4729, 140, 1492, 40, 97, "Input"],
+Cell[6224, 182, 289, 7, 28, "Input"],
+Cell[6516, 191, 1003, 26, 63, "Input"],
+Cell[CellGroupData[{
+Cell[7544, 221, 124, 2, 28, "Input"],
+Cell[7671, 225, 101, 1, 28, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
