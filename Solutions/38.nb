@@ -1,0 +1,251 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7791,        242]
+NotebookOptionsPosition[      6947,        209]
+NotebookOutlinePosition[      7301,        225]
+CellTagsIndexPosition[      7258,        222]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Pandigital multiples
+Problem 38
+
+Take the number 192 and multiply it by each of 1, 2, and 3 : 192*1 = 192
+192*2 = 384
+192*3 = 576
+
+By concatenating each product we get the 1 to 9 pandigital, 192384576. We \
+will call 192384576 the concatenated product of 192 and (1, 2, 3)
+
+The same can be achieved by starting with 9 and multiplying by 1, 2, 3, 4, \
+and 5, giving the pandigital, 918273645, which is the concatenated product of \
+9 and (1, 2, 3, 4, 5).What is the largest 1 to 9 pandigital 9 - digit number \
+that can be formed as the concatenated product of an integer with (1, 2, ..., \
+n) where n > 1?\
+\>", "Text",
+ CellChangeTimes->{{3.656751230025669*^9, 3.656751231563306*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"consNumList", "[", "list_List", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Join", "[", 
+    RowBox[{
+     RowBox[{"IntegerDigits", "/@", "list"}], ",", 
+     RowBox[{"{", "0", "}"}]}], "]"}], "//", "Flatten"}]}]], "Input",
+ CellChangeTimes->{{3.656666090328683*^9, 3.6566662323540573`*^9}, {
+  3.6567496548760443`*^9, 3.656749660877997*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"checkPandigital", "[", "list_List", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"Length", "@", "list"}], "\[Equal]", "10"}], ")"}], "&&", 
+   RowBox[{
+    RowBox[{"Signature", "@", "list"}], "!=", "0"}]}]}]], "Input",
+ CellChangeTimes->{{3.656666240999627*^9, 3.6566662717076406`*^9}, {
+   3.65666642987962*^9, 3.656666441501102*^9}, {3.656666559491353*^9, 
+   3.656666560123395*^9}, 3.656668092613081*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"checkPandigitalAll", "[", "list_List", "]"}], ":=", 
+  RowBox[{"checkPandigital", "@", 
+   RowBox[{"consNumList", "@", "list"}]}]}]], "Input",
+ CellChangeTimes->{{3.656749718934299*^9, 3.656749750206208*^9}}],
+
+Cell["\<\
+It is shown that the first number\[CloseCurlyQuote]s range can be limited for \
+the max multiplier.\
+\>", "Text",
+ CellChangeTimes->{{3.656749799735229*^9, 3.656749854117807*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"testRange", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"2", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"9999", ",", "5000"}], "}"}]}], ",", 
+     RowBox[{"3", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"333", ",", "100"}], "}"}]}], ",", 
+     RowBox[{"4", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"249", ",", "25"}], "}"}]}], ",", 
+     RowBox[{"5", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"200", ",", "1"}], "}"}]}]}], "|>"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.656749998074593*^9, 3.656750090635233*^9}, {
+  3.6567501598769217`*^9, 3.656750162229463*^9}, {3.656750203916519*^9, 
+  3.6567502218248787`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"cf", "[", "n0_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", "=", "n0"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"start", ",", "end"}], "}"}], "=", 
+       RowBox[{"testRange", "[", "n", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"got", "=", "False"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Do", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"list", "=", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"k", "*", "i"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"k", ",", "n"}], "}"}]}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"checkPandigitalAll", "@", "list"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"now", "=", "i"}], ";", "\[IndentingNewLine]", 
+            RowBox[{"got", "=", "True"}], ";", "\[IndentingNewLine]", 
+            RowBox[{"Break", "[", "]"}], ";"}]}], "\[IndentingNewLine]", 
+          "]"}]}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "start", ",", "end", ",", 
+          RowBox[{"-", "1"}]}], "}"}]}], "\[IndentingNewLine]", "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+       "got", ",", "\[IndentingNewLine]", "now", ",", "\[IndentingNewLine]", 
+        "0"}], "]"}]}]}], "\[IndentingNewLine]", "]"}]}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.656750250694742*^9, 3.6567503587881117`*^9}, {
+  3.656750392021282*^9, 3.656750441929558*^9}, {3.656750479391841*^9, 
+  3.656750509412427*^9}, {3.6567505891046762`*^9, 3.656750625212368*^9}, {
+  3.6567506907039537`*^9, 3.6567507343416348`*^9}, {3.656751009860585*^9, 
+  3.656751041337378*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"multierAll", "=", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "3", ",", "4", ",", "5"}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.656751078204358*^9, 3.656751086514441*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"resAll", "=", 
+  RowBox[{"cf", "/@", "multierAll"}]}]], "Input",
+ CellChangeTimes->{{3.656750522563141*^9, 3.656750532410433*^9}, {
+  3.656751084099618*^9, 3.6567510890467997`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"9327", ",", "327", ",", "0", ",", "9"}], "}"}]], "Output",
+ CellChangeTimes->{3.656750533839101*^9, 3.656750753487441*^9, 
+  3.656751045061129*^9, 3.6567510894406548`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"resPan", "=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"resAll", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "*", "k"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"k", ",", 
+            RowBox[{"multierAll", "[", 
+             RowBox[{"[", "i", "]"}], "]"}]}], "}"}]}], "]"}], "//", 
+        "IntegerDigits"}], "//", "Flatten"}], "//", "FromDigits"}], ")"}], 
+    ",", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", "4"}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.656751095246997*^9, 3.656751171489079*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"932718654", ",", "327654981", ",", "0", ",", "918273645"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.656751171842485*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Max", "@", "resPan"}]], "Input",
+ CellChangeTimes->{{3.656751176023491*^9, 3.6567511820443707`*^9}}],
+
+Cell[BoxData["932718654"], "Output",
+ CellChangeTimes->{3.656751182337356*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 691},
+WindowMargins->{{148, Automatic}, {Automatic, 4}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 695, 17, 258, "Text"],
+Cell[1256, 39, 370, 9, 28, "Input"],
+Cell[1629, 50, 465, 11, 28, "Input"],
+Cell[2097, 63, 243, 5, 28, "Input"],
+Cell[2343, 70, 189, 4, 30, "Text"],
+Cell[2535, 76, 677, 19, 28, "Input"],
+Cell[3215, 97, 1919, 46, 301, "Input"],
+Cell[5137, 145, 211, 5, 28, "Input"],
+Cell[CellGroupData[{
+Cell[5373, 154, 205, 4, 28, "Input"],
+Cell[5581, 160, 211, 4, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5829, 169, 695, 21, 63, "Input"],
+Cell[6527, 192, 162, 4, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6726, 201, 124, 2, 28, "Input"],
+Cell[6853, 205, 78, 1, 28, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
