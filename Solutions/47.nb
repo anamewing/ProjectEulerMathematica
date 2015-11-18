@@ -1,0 +1,120 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3179,        111]
+NotebookOptionsPosition[      2706,         90]
+NotebookOutlinePosition[      3063,        106]
+CellTagsIndexPosition[      3020,        103]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Distinct primes factors
+Problem 47
+
+The first two consecutive numbers to have two distinct prime factors are : 14 \
+= 2*7
+15 = 3*5
+
+The first three consecutive numbers to have three distinct prime factors are \
+: 644 = 2 \.b2*7*23
+645 = 3*5*43
+646 = 2*17*19.
+
+Find the first four consecutive integers to have four distinct prime \
+factors.What is the first of these numbers?\
+\>", "Text",
+ CellChangeTimes->{{3.656849065234149*^9, 3.6568490668917427`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"distinctPrimes", "[", "n_Integer", "]"}], ":=", 
+  RowBox[{"Length", "@", 
+   RowBox[{"FactorInteger", "@", "n"}]}]}]], "Input",
+ CellChangeTimes->{{3.656839334508992*^9, 3.656839374991238*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"maxN", "=", "500000"}], ";"}]], "Input",
+ CellChangeTimes->{{3.656839682513505*^9, 3.656839685345421*^9}, {
+  3.656839805535198*^9, 3.656839823917713*^9}, {3.656839980796136*^9, 
+  3.656839981001445*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"disNum", "=", 
+   RowBox[{"distinctPrimes", "/@", 
+    RowBox[{"Range", "@", "maxN"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6568396689064302`*^9, 3.656839680601548*^9}, {
+  3.6568397629686604`*^9, 3.6568397644803553`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"first", "=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"disNum", "/.", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "pre__", ",", "a_", ",", "b_", ",", "c_", ",", "d_", ",", "__"}], 
+         "}"}], "/;", 
+        RowBox[{
+         RowBox[{"a", ">", "3"}], "&&", 
+         RowBox[{"b", ">", "3"}], "&&", 
+         RowBox[{"c", ">", "3"}], "&&", 
+         RowBox[{"d", ">", "3"}]}]}], "\[Rule]", 
+       RowBox[{"{", "pre", "}"}]}]}], "//", "Length"}], ")"}], "+", 
+   "1"}]}]], "Input",
+ CellChangeTimes->{{3.656839704132023*^9, 3.6568397310893908`*^9}, {
+  3.656839771424988*^9, 3.656839801279194*^9}}],
+
+Cell[BoxData["134043"], "Output",
+ CellChangeTimes->{{3.6568397158661346`*^9, 3.656839731560058*^9}, {
+   3.656839767812566*^9, 3.656839817333856*^9}, 3.65683993003043*^9, 
+   3.656839969203521*^9, 3.6568403580964737`*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 695},
+WindowMargins->{{Automatic, 273}, {-213, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 466, 16, 220, "Text"],
+Cell[1027, 38, 229, 5, 28, "Input"],
+Cell[1259, 45, 239, 5, 28, "Input"],
+Cell[1501, 52, 263, 6, 28, "Input"],
+Cell[CellGroupData[{
+Cell[1789, 62, 676, 20, 46, "Input"],
+Cell[2468, 84, 222, 3, 28, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
