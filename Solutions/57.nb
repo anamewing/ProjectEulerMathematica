@@ -1,0 +1,123 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3473,        114]
+NotebookOptionsPosition[      2963,         92]
+NotebookOutlinePosition[      3319,        108]
+CellTagsIndexPosition[      3276,        105]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Square root convergents
+Problem 57
+
+It is possible to show that the square root of two can be expressed as an \
+infinite continued fraction.\[Sqrt]2 = 1 + 1/(2 + 1/(2 + 1/(2 + ...))) = \
+1.414213 ...
+
+By expanding this for the first four iterations, we get : 1 + 1/2 = 3/2 = 1.5
+1 + 1/(2 + 1/2) = 7/5 = 1.4
+1 + 1/(2 + 1/(2 + 1/2)) = 17/12 = 1.41666 ...
+1 + 1/(2 + 1/(2 + 1/(2 + 1/2))) = 41/29 = 1.41379 ...
+
+The next three expansions are 99/70, 239/169, and 577/408, but the eighth \
+expansion, 1393/985, is the first example where the number of digits in the \
+numerator exceeds the number of digits in the denominator.In the first one - \
+thousand expansions, how many fractions contain a numerator with more digits \
+than denominator?\
+\>", "Text",
+ CellChangeTimes->{{3.658485044373954*^9, 3.65848504658082*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"maxN", "=", "999"}], ";"}]], "Input",
+ CellChangeTimes->{{3.658484677353003*^9, 3.6584846893321333`*^9}, 
+   3.658484907700982*^9, {3.658484990912768*^9, 3.6584849910630217`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ratList", "=", 
+   RowBox[{"Prepend", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{"2", ",", 
+       RowBox[{"{", "maxN", "}"}]}], "]"}], ",", "1"}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.658484685602743*^9, 3.6584847169585238`*^9}, {
+  3.658484756827324*^9, 3.658484763928252*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ratioList", "=", 
+   RowBox[{"Convergents", "[", "ratList", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.658484777448868*^9, 3.658484795765141*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"isNumeratorLonger", "[", "x_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"Length", "@", 
+     RowBox[{"IntegerDigits", "@", 
+      RowBox[{"Numerator", "@", "x"}]}]}], ">", 
+    RowBox[{"Length", "@", 
+     RowBox[{"IntegerDigits", "@", 
+      RowBox[{"Denominator", "@", "x"}]}]}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.658484801809758*^9, 3.658484867270115*^9}, 
+   3.658484984942713*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Count", "[", 
+  RowBox[{"ratioList", ",", 
+   RowBox[{"_", "?", "isNumeratorLonger"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.658484876200993*^9, 3.65848489291339*^9}}],
+
+Cell[BoxData["153"], "Output",
+ CellChangeTimes->{{3.658484893924429*^9, 3.658484909579627*^9}, {
+  3.658484987200406*^9, 3.658484998641889*^9}}]
+}, Open  ]]
+},
+WindowSize->{808, 705},
+WindowMargins->{{243, Automatic}, {-24, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 826, 19, 284, "Text"],
+Cell[1387, 41, 214, 4, 28, "Input"],
+Cell[1604, 47, 346, 10, 28, "Input"],
+Cell[1953, 59, 186, 4, 28, "Input"],
+Cell[2142, 65, 438, 12, 46, "Input"],
+Cell[CellGroupData[{
+Cell[2605, 81, 194, 4, 28, "Input"],
+Cell[2802, 87, 145, 2, 28, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
