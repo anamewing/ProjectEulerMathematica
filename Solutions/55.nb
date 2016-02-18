@@ -1,0 +1,241 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9563,        232]
+NotebookOptionsPosition[      8750,        201]
+NotebookOutlinePosition[      9105,        217]
+CellTagsIndexPosition[      9062,        214]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Lychrel numbers
+Problem 55
+
+If we take 47, reverse and add, 47 + 74 = 121, which is palindromic.Not all \
+numbers produce palindromes so quickly.For example, 349 + 943 = 1292, 1292 + \
+2921 = 4213
+4213 + 3124 = 7337
+
+That is, 349 took three iterations to arrive at a palindrome.Although no one \
+has proved it yet, it is thought that some numbers, like 196, never produce a \
+palindrome.A number that never forms a palindrome through the reverse and add \
+process is called a Lychrel number.Due to the theoretical nature of these \
+numbers, and for the purpose of this problem, we shall assume that a number \
+is Lychrel until proven otherwise.In addition you are given that for every \
+number below ten - thousand, it will either (i) become a palindrome in less \
+than fifty iterations, or, (ii) no one, with all the computing power that \
+exists, has managed so far to map it to a palindrome.In fact, 10677 is the \
+first number to be shown to require over fifty iterations before producing a \
+palindrome : 4668731596684224866951378664 (53 iterations, 28 - \
+digits).Surprisingly, there are palindromic numbers that are themselves \
+Lychrel numbers; the first example is 4994.
+
+How many Lychrel numbers are there below ten - thousand?NOTE : Wording was \
+modified slightly on 24 April 2007 to emphasise the theoretical nature of \
+Lychrel numbers.\
+\>", "Text",
+ CellChangeTimes->{{3.664799968412956*^9, 3.664799970917468*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"reverseInteger", "[", "n_Integer", "]"}], ":=", 
+  RowBox[{"FromDigits", "@", 
+   RowBox[{"Reverse", "@", 
+    RowBox[{"IntegerDigits", "@", "n"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.664800148331237*^9, 3.6648001641202*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"isPalindromes", "[", "n_Integer", "]"}], ":=", 
+  RowBox[{"n", "\[Equal]", 
+   RowBox[{"reverseInteger", "@", "n"}]}]}]], "Input",
+ CellChangeTimes->{{3.664800010316638*^9, 3.664800010386075*^9}, {
+  3.664800048305777*^9, 3.664800102875896*^9}, {3.664800168352571*^9, 
+  3.6648001746382647`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"reverseAdd", "[", "n_Integer", "]"}], ":=", 
+  RowBox[{"n", "+", 
+   RowBox[{"reverseInteger", "@", "n"}]}]}]], "Input",
+ CellChangeTimes->{{3.664800200948615*^9, 3.6648002167448*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"isLychrel", "[", 
+   RowBox[{"n_Integer", ",", "k_Integer"}], "]"}], ":=", 
+  RowBox[{"True", "/;", 
+   RowBox[{"k", "<=", "0"}]}]}]], "Input",
+ CellChangeTimes->{{3.6648007171273317`*^9, 3.664800741182013*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"isLychrel", "[", 
+    RowBox[{"n_Integer", ",", "k_Integer"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"!", 
+     RowBox[{"isPalindromes", "@", 
+      RowBox[{"reverseAdd", "@", "n"}]}]}], "&&", 
+    RowBox[{"isLychrel", "[", 
+     RowBox[{
+      RowBox[{"reverseAdd", "@", "n"}], ",", 
+      RowBox[{"k", "-", "1"}]}], "]"}]}]}], "\[IndentingNewLine]"}]], "Input",\
+
+ CellChangeTimes->{{3.66480041605443*^9, 3.664800465219993*^9}, {
+   3.664800514624742*^9, 3.664800588141302*^9}, 3.664800744822217*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"isLychrelPure", "[", "n_Integer", "]"}], ":=", 
+  RowBox[{"isLychrel", "[", 
+   RowBox[{"n", ",", "50"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.664800805722991*^9, 3.664800820749604*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"maxN", "=", "10000"}], ";"}]], "Input",
+ CellChangeTimes->{{3.664800389483026*^9, 3.664800392958552*^9}, 
+   3.6648009842391367`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"lychrelList", "=", 
+   RowBox[{"{", "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.664800889854351*^9, 3.664800895304282*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Do", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"isLychrelPure", "[", "n", "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"AppendTo", "[", 
+       RowBox[{"lychrelList", ",", "n"}], "]"}]}], "\[IndentingNewLine]", 
+     "]"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"n", ",", "1", ",", "maxN"}], "}"}]}], "\[IndentingNewLine]", 
+   "]"}], "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.664800843570159*^9, 3.664800939460671*^9}, {
+  3.664800974591668*^9, 3.664800977596583*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["lychrelList"], "Input",
+ CellChangeTimes->{{3.664800925177541*^9, 3.6648009260858107`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "196", ",", "295", ",", "394", ",", "493", ",", "592", ",", "689", ",", 
+   "691", ",", "788", ",", "790", ",", "879", ",", "887", ",", "978", ",", 
+   "986", ",", "1495", ",", "1497", ",", "1585", ",", "1587", ",", "1675", 
+   ",", "1677", ",", "1765", ",", "1767", ",", "1855", ",", "1857", ",", 
+   "1945", ",", "1947", ",", "1997", ",", "2494", ",", "2496", ",", "2584", 
+   ",", "2586", ",", "2674", ",", "2676", ",", "2764", ",", "2766", ",", 
+   "2854", ",", "2856", ",", "2944", ",", "2946", ",", "2996", ",", "3493", 
+   ",", "3495", ",", "3583", ",", "3585", ",", "3673", ",", "3675", ",", 
+   "3763", ",", "3765", ",", "3853", ",", "3855", ",", "3943", ",", "3945", 
+   ",", "3995", ",", "4079", ",", "4169", ",", "4259", ",", "4349", ",", 
+   "4439", ",", "4492", ",", "4494", ",", "4529", ",", "4582", ",", "4584", 
+   ",", "4619", ",", "4672", ",", "4674", ",", "4709", ",", "4762", ",", 
+   "4764", ",", "4799", ",", "4852", ",", "4854", ",", "4889", ",", "4942", 
+   ",", "4944", ",", "4979", ",", "4994", ",", "5078", ",", "5168", ",", 
+   "5258", ",", "5348", ",", "5438", ",", "5491", ",", "5493", ",", "5528", 
+   ",", "5581", ",", "5583", ",", "5618", ",", "5671", ",", "5673", ",", 
+   "5708", ",", "5761", ",", "5763", ",", "5798", ",", "5851", ",", "5853", 
+   ",", "5888", ",", "5941", ",", "5943", ",", "5978", ",", "5993", ",", 
+   "6077", ",", "6167", ",", "6257", ",", "6347", ",", "6437", ",", "6490", 
+   ",", "6492", ",", "6527", ",", "6580", ",", "6582", ",", "6617", ",", 
+   "6670", ",", "6672", ",", "6707", ",", "6760", ",", "6762", ",", "6797", 
+   ",", "6850", ",", "6852", ",", "6887", ",", "6940", ",", "6942", ",", 
+   "6977", ",", "6992", ",", "7059", ",", "7076", ",", "7149", ",", "7166", 
+   ",", "7239", ",", "7256", ",", "7329", ",", "7346", ",", "7419", ",", 
+   "7436", ",", "7491", ",", "7509", ",", "7526", ",", "7581", ",", "7599", 
+   ",", "7616", ",", "7671", ",", "7689", ",", "7706", ",", "7761", ",", 
+   "7779", ",", "7796", ",", "7851", ",", "7869", ",", "7886", ",", "7941", 
+   ",", "7959", ",", "7976", ",", "7991", ",", "8058", ",", "8075", ",", 
+   "8079", ",", "8089", ",", "8148", ",", "8165", ",", "8169", ",", "8179", 
+   ",", "8238", ",", "8255", ",", "8259", ",", "8269", ",", "8328", ",", 
+   "8345", ",", "8349", ",", "8359", ",", "8418", ",", "8435", ",", "8439", 
+   ",", "8449", ",", "8490", ",", "8508", ",", "8525", ",", "8529", ",", 
+   "8539", ",", "8580", ",", "8598", ",", "8615", ",", "8619", ",", "8629", 
+   ",", "8670", ",", "8688", ",", "8705", ",", "8709", ",", "8719", ",", 
+   "8760", ",", "8778", ",", "8795", ",", "8799", ",", "8809", ",", "8850", 
+   ",", "8868", ",", "8885", ",", "8889", ",", "8899", ",", "8940", ",", 
+   "8958", ",", "8975", ",", "8979", ",", "8989", ",", "8990", ",", "9057", 
+   ",", "9074", ",", "9078", ",", "9088", ",", "9147", ",", "9164", ",", 
+   "9168", ",", "9178", ",", "9237", ",", "9254", ",", "9258", ",", "9268", 
+   ",", "9327", ",", "9344", ",", "9348", ",", "9358", ",", "9417", ",", 
+   "9434", ",", "9438", ",", "9448", ",", "9507", ",", "9524", ",", "9528", 
+   ",", "9538", ",", "9597", ",", "9614", ",", "9618", ",", "9628", ",", 
+   "9687", ",", "9704", ",", "9708", ",", "9718", ",", "9777", ",", "9794", 
+   ",", "9798", ",", "9808", ",", "9867", ",", "9884", ",", "9888", ",", 
+   "9898", ",", "9957", ",", "9974", ",", "9978", ",", "9988", ",", "9999"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.664800926334165*^9, 3.664800942364718*^9}, {
+  3.664800980351554*^9, 3.6648009898568573`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Length", "@", "lychrelList"}]], "Input",
+ CellChangeTimes->{{3.66480099296961*^9, 3.664800995403614*^9}}],
+
+Cell[BoxData["249"], "Output",
+ CellChangeTimes->{3.664800995786853*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 699},
+WindowMargins->{{Automatic, 80}, {-73, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1440, 27, 372, "Text"],
+Cell[2001, 49, 262, 6, 28, "Input"],
+Cell[2266, 57, 331, 7, 28, "Input"],
+Cell[2600, 66, 219, 5, 28, "Input"],
+Cell[2822, 73, 246, 6, 28, "Input"],
+Cell[3071, 81, 549, 15, 63, "Input"],
+Cell[3623, 98, 225, 5, 28, "Input"],
+Cell[3851, 105, 168, 4, 28, "Input"],
+Cell[4022, 111, 162, 4, 28, "Input"],
+Cell[4187, 117, 597, 14, 131, "Input"],
+Cell[CellGroupData[{
+Cell[4809, 135, 105, 1, 28, "Input"],
+Cell[4917, 138, 3576, 50, 318, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8530, 193, 129, 2, 28, "Input"],
+Cell[8662, 197, 72, 1, 28, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
