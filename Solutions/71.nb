@@ -1,0 +1,344 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9954,        335]
+NotebookOptionsPosition[      8624,        283]
+NotebookOutlinePosition[      8991,        299]
+CellTagsIndexPosition[      8948,        296]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Ordered fractions
+Problem 71
+
+Consider the fraction, n/d, where n and d are positive integers.If n < d and \
+HCF (n, d) = 1, it is called a reduced proper fraction.If we list the set of \
+reduced proper fractions for d <= 8 in ascending order of size, we get : 1/8, \
+1/7, 1/6, 1/5, 1/4, 2/7, 1/3, 3/8, 2/5, 3/7, 1/2, 4/7, 3/5, 5/8, 2/3, 5/7, \
+3/4, 4/5, 5/6, 6/7, 7/8
+
+It can be seen that 2/5 is the fraction immediately to the left of 3/7.
+
+By listing the set of reduced proper fractions for d <= 1, 000, 000 in \
+ascending order of size, find the numerator of the fraction immediately to \
+the left of 3/7.
+\
+\>", "Text",
+ CellChangeTimes->{{3.67327024852879*^9, 3.673270250055615*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Way 1", "Chapter",
+ CellChangeTimes->{{3.673274021794343*^9, 3.673274022601157*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"assume", "=", 
+   RowBox[{"{", 
+    RowBox[{"k", "\[Element]", "Integers"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"testCases", "=", 
+  RowBox[{
+   RowBox[{"7", "*", "k"}], "+", 
+   RowBox[{"Range", "[", 
+    RowBox[{"0", ",", "6"}], "]"}]}]}]}], "Input",
+ CellChangeTimes->{{3.6732710542928762`*^9, 3.6732711021385117`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"7", " ", "k"}], ",", 
+   RowBox[{"1", "+", 
+    RowBox[{"7", " ", "k"}]}], ",", 
+   RowBox[{"2", "+", 
+    RowBox[{"7", " ", "k"}]}], ",", 
+   RowBox[{"3", "+", 
+    RowBox[{"7", " ", "k"}]}], ",", 
+   RowBox[{"4", "+", 
+    RowBox[{"7", " ", "k"}]}], ",", 
+   RowBox[{"5", "+", 
+    RowBox[{"7", " ", "k"}]}], ",", 
+   RowBox[{"6", "+", 
+    RowBox[{"7", " ", "k"}]}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.67327109744925*^9, 3.6732711024339113`*^9}, 
+   3.6732726970570717`*^9, 3.673274230434279*^9, 3.673275374977866*^9}]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"minDiffer", "[", 
+   RowBox[{"d_", "/;", 
+    RowBox[{"Simplify", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Mod", "[", 
+        RowBox[{"d", ",", "7"}], "]"}], "\[Equal]", "0"}], ",", "assume"}], 
+     "]"}]}], "]"}], ":=", 
+  RowBox[{"1", "/", "d"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"minDiffer", "[", "d_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"3", "/", "7"}], "-", 
+   RowBox[{
+    RowBox[{"Floor", "[", 
+     RowBox[{
+      RowBox[{"3", "/", "7"}], " ", "d"}], "]"}], "/", "d"}]}]}]}], "Input",
+ CellChangeTimes->{{3.673270564531815*^9, 3.673270592089623*^9}, {
+   3.673270663437976*^9, 3.6732706708105164`*^9}, {3.673270708837472*^9, 
+   3.673270733402504*^9}, {3.6732723010084352`*^9, 3.673272305718615*^9}, 
+   3.6732723920250683`*^9, {3.673272522541716*^9, 3.673272529340247*^9}, {
+   3.673272563431067*^9, 3.6732725739581947`*^9}, {3.673272617401628*^9, 
+   3.673272619647853*^9}, {3.673272675832219*^9, 3.6732726923090277`*^9}}],
+
+Cell["\<\
+Try to find argmin{minDiffer[d]} for all d<10^6
+minDiffer is the diff between 3/7 and the left fraction of 3/7 with \
+denominator d
+
+hcf(n,d)=1 is meaning less, since the cloeset fraction don\[CloseCurlyQuote]t \
+care about if simplified
+\
+\>", "Text",
+ CellChangeTimes->{{3.6732707497228737`*^9, 3.673270870241145*^9}, {
+  3.6732709330523357`*^9, 3.673271012876527*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"minDiffer", "/@", "testCases"}], "//", 
+  RowBox[{
+   RowBox[{"Simplify", "[", 
+    RowBox[{"#", ",", 
+     RowBox[{"Assumptions", "\[Rule]", "assume"}]}], "]"}], "&"}]}]], "Input",\
+
+ CellChangeTimes->{{3.673271114662593*^9, 3.673271129109297*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   FractionBox["1", 
+    RowBox[{"7", " ", "k"}]], ",", 
+   FractionBox["3", 
+    RowBox[{"7", "+", 
+     RowBox[{"49", " ", "k"}]}]], ",", 
+   FractionBox["6", 
+    RowBox[{"14", "+", 
+     RowBox[{"49", " ", "k"}]}]], ",", 
+   FractionBox["2", 
+    RowBox[{"21", "+", 
+     RowBox[{"49", " ", "k"}]}]], ",", 
+   FractionBox["5", 
+    RowBox[{"28", "+", 
+     RowBox[{"49", " ", "k"}]}]], ",", 
+   FractionBox["1", 
+    RowBox[{"35", "+", 
+     RowBox[{"49", " ", "k"}]}]], ",", 
+   FractionBox["4", 
+    RowBox[{"42", "+", 
+     RowBox[{"49", " ", "k"}]}]]}], "}"}]], "Output",
+ CellChangeTimes->{{3.673271129287591*^9, 3.6732711584115047`*^9}, 
+   3.673272310981781*^9, 3.6732723948954487`*^9, {3.673272532300974*^9, 
+   3.673272576039913*^9}, 3.673272621953336*^9, 3.6732726971341887`*^9, 
+   3.67327423050681*^9, 3.673275375043673*^9}]
+}, Open  ]],
+
+Cell["\<\
+Obviously, all of test cases on minDiffer[m=7k+a]  decreases by k
+Thus there are only seven number to test:\
+\>", "Text",
+ CellChangeTimes->{{3.6732727370500193`*^9, 3.673272813106213*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"mTest", "=", 
+  RowBox[{"Range", "[", 
+   RowBox[{"1*^6", ",", 
+    RowBox[{"1*^6", "-", "6"}], ",", 
+    RowBox[{"-", "1"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.673272814573455*^9, 3.6732728475608797`*^9}, {
+  3.6732742179768887`*^9, 3.6732742198924723`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "1000000", ",", "999999", ",", "999998", ",", "999997", ",", "999996", ",", 
+   "999995", ",", "999994"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.6732728479834757`*^9, {3.673274220337967*^9, 3.673274230552342*^9}, 
+   3.673275375068678*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"minPos", "=", 
+  RowBox[{"Flatten", "@", 
+   RowBox[{"Position", "[", 
+    RowBox[{
+     RowBox[{"minDiffer", "/@", "mTest"}], ",", 
+     RowBox[{"Min", "[", 
+      RowBox[{"minDiffer", "/@", "mTest"}], "]"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.673273102137266*^9, 3.6732731296240253`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", "4", "}"}]], "Output",
+ CellChangeTimes->{{3.673273099061277*^9, 3.6732731298154783`*^9}, 
+   3.6732742306050053`*^9, 3.6732753751129093`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"d0", "=", 
+  RowBox[{"mTest", "[", 
+   RowBox[{"[", "minPos", "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6732731083552637`*^9, 3.6732731128477383`*^9}, {
+  3.673273154702524*^9, 3.6732731549260263`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", "999997", "}"}]], "Output",
+ CellChangeTimes->{{3.673273113253882*^9, 3.673273155415434*^9}, 
+   3.673274230651634*^9, 3.673275375161357*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Floor", "[", 
+    RowBox[{
+     RowBox[{"3", "/", "7"}], " ", "d"}], "]"}], "/", "d"}], "/.", 
+  RowBox[{"d", "\[Rule]", "d0"}]}]], "Input",
+ CellChangeTimes->{{3.673273157295827*^9, 3.673273158421356*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  FractionBox["428570", "999997"], "}"}]], "Output",
+ CellChangeTimes->{3.6732731586854897`*^9, 3.673274230710868*^9, 
+  3.67327537521395*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Way 2", "Chapter",
+ CellChangeTimes->{{3.673274016628265*^9, 3.673274017794301*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"obj", "[", 
+   RowBox[{"d_Integer", "/;", 
+    RowBox[{"Divisible", "[", 
+     RowBox[{"d", ",", "7"}], "]"}]}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"d", "/", "7"}], "*", "3"}], "-", "1"}], ")"}], "/", 
+   "d"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"obj", "[", "d_Integer", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Floor", "[", 
+    RowBox[{
+     RowBox[{"3", "/", "7"}], " ", "d"}], "]"}], "/", "d"}]}]}], "Input",
+ CellChangeTimes->{{3.673273624340639*^9, 3.6732736829725723`*^9}, {
+  3.6732738845504837`*^9, 3.673273905447061*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Max", "[", 
+  RowBox[{"obj", "/@", 
+   RowBox[{"Range", "[", 
+    RowBox[{
+     RowBox[{"1*^6", "-", "10"}], ",", "1*^6"}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.673273699680953*^9, 3.673273832091365*^9}, {
+  3.673273982317205*^9, 3.673273985643325*^9}, {3.673274223186988*^9, 
+  3.67327422461089*^9}}],
+
+Cell[BoxData[
+ FractionBox["428570", "999997"]], "Output",
+ CellChangeTimes->{{3.673273799731152*^9, 3.673273822120531*^9}, 
+   3.6732738808187733`*^9, {3.673273980038889*^9, 3.67327398615388*^9}, {
+   3.673274225815057*^9, 3.673274230750085*^9}, 3.673275375283657*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 701},
+WindowMargins->{{193, Automatic}, {Automatic, 47}},
+FrontEndVersion->"10.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (2015\:5e7410\
+\:67089\:65e5)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 699, 17, 239, "Text"],
+Cell[CellGroupData[{
+Cell[1282, 41, 90, 1, 65, "Chapter"],
+Cell[CellGroupData[{
+Cell[1397, 46, 375, 11, 74, "Input"],
+Cell[1775, 59, 580, 17, 28, "Output"]
+}, Open  ]],
+Cell[2370, 79, 995, 24, 74, "Input"],
+Cell[3368, 105, 381, 10, 106, "Text"],
+Cell[CellGroupData[{
+Cell[3774, 119, 284, 8, 42, "Input"],
+Cell[4061, 129, 880, 26, 48, "Output"]
+}, Open  ]],
+Cell[4956, 158, 199, 4, 49, "Text"],
+Cell[CellGroupData[{
+Cell[5180, 166, 291, 7, 42, "Input"],
+Cell[5474, 175, 285, 7, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5796, 187, 324, 8, 42, "Input"],
+Cell[6123, 197, 170, 3, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6330, 205, 232, 5, 28, "Input"],
+Cell[6565, 212, 169, 3, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6771, 220, 253, 7, 42, "Input"],
+Cell[7027, 229, 171, 4, 48, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7247, 239, 90, 1, 65, "Chapter"],
+Cell[7340, 242, 623, 19, 74, "Input"],
+Cell[CellGroupData[{
+Cell[7988, 265, 336, 8, 42, "Input"],
+Cell[8327, 275, 269, 4, 48, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
