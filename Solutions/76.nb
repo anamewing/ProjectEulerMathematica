@@ -1,0 +1,179 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4646,        170]
+NotebookOptionsPosition[      4121,        148]
+NotebookOutlinePosition[      4489,        164]
+CellTagsIndexPosition[      4446,        161]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Counting summations
+Problem 76
+
+It is possible to write five as a sum in exactly six different ways : 4 + 1
+3 + 2
+3 + 1 + 1
+2 + 2 + 1
+2 + 1 + 1 + 1
+1 + 1 + 1 + 1 + 1
+
+How many different ways can one hundred be written as a sum of at least two \
+positive integers?\
+\>", "Text",
+ CellChangeTimes->{{3.6791196528792152`*^9, 3.6791196554201097`*^9}}],
+
+Cell["\<\
+There are two parts of possible combinations for number N.
+The first one is (N-1)+1
+The second one is every combination without 1.
+Further more, the second one can be depart to (N-2)+2 and every combination \
+without {1,2}...\
+\>", "Text",
+ CellChangeTimes->{{3.679119667261176*^9, 3.679119668420335*^9}, {
+  3.679119779358347*^9, 3.6791198404260406`*^9}, {3.679121551343615*^9, 
+  3.679121574372422*^9}, {3.6791216060108833`*^9, 3.6791216201715527`*^9}}],
+
+Cell["\<\
+f(k,N) means the counting of N, which only uses number k and above, and at \
+least one numbers are used.
+we have 
+f(k,N)= f(k,N-k)+f(k+1,N-k-1)...+f(N,0)+1
+f(m,m)=1
+
+we use g(N) denote counting of N, with at least two numbers uesd.
+g(N)=f(1,N)-1\
+\>", "Text",
+ CellChangeTimes->{{3.679119941899852*^9, 3.6791200787442617`*^9}, {
+  3.679120215201165*^9, 3.6791202614596024`*^9}, {3.679120298827883*^9, 
+  3.679120314184197*^9}, {3.679120510619199*^9, 3.679120511024642*^9}, {
+  3.6791205516087093`*^9, 3.679120574816588*^9}}],
+
+Cell["\<\
+obviously, 
+f(1,1)=1
+
+f(1,2)=2
+f(2,2)=1
+
+f(1,3)=3
+f(2,3)=1
+f(3,3)=1
+
+f(1,4)=5
+f(2,4)=2
+f(3,4)=1
+f(4,4)=1
+
+f(1,5)=5+1+1=7
+
+
+g(1)=0
+g(2)=1
+g(3)=2
+g(4)=4
+g(5)=6\
+\>", "Text",
+ CellChangeTimes->{{3.679120133804199*^9, 3.6791201340434847`*^9}, {
+  3.679120230546446*^9, 3.679120274939891*^9}, {3.679120421782407*^9, 
+  3.679120424026293*^9}, {3.679120514930811*^9, 3.679120543176855*^9}, {
+  3.679120589545772*^9, 3.679120598952517*^9}, {3.6791206345538263`*^9, 
+  3.679120678636566*^9}, {3.679120714345649*^9, 3.679120832294766*^9}, {
+  3.6791208690856037`*^9, 3.6791208807949533`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"k_Integer", ",", "N_Integer"}], "]"}], "/;", 
+   RowBox[{"k", ">", "N"}]}], ":=", 
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"k", ",", "N"}], "]"}], "=", "0"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"k_Integer", ",", "N_Integer"}], "]"}], "/;", 
+   RowBox[{"k", "\[Equal]", "N"}]}], ":=", 
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"k", ",", "N"}], "]"}], "=", "1"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"k_Integer", ",", "N_Integer"}], "]"}], "/;", 
+   RowBox[{"k", "<", "N"}]}], ":=", 
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"k", ",", "N"}], "]"}], "=", 
+   RowBox[{
+    RowBox[{"Sum", "[", 
+     RowBox[{
+      RowBox[{"f", "[", 
+       RowBox[{
+        RowBox[{"k", "+", "m"}], ",", 
+        RowBox[{"N", "-", "k", "-", "m"}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"m", ",", "0", ",", 
+        RowBox[{"N", "-", "k"}]}], "}"}]}], "]"}], "+", 
+    "1"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g", "[", "N_Integer", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"1", ",", "N"}], "]"}], "-", "1"}]}]}], "Input",
+ CellChangeTimes->{{3.679121114533247*^9, 3.679121115505403*^9}, {
+  3.679121171396017*^9, 3.679121345379632*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"g", "[", "100", "]"}]], "Input",
+ CellChangeTimes->{{3.679121347598793*^9, 3.679121350851981*^9}}],
+
+Cell[BoxData["190569291"], "Output",
+ CellChangeTimes->{{3.6791213488730164`*^9, 3.67912135123904*^9}}]
+}, Open  ]]
+},
+WindowSize->{808, 693},
+WindowMargins->{{Automatic, 107}, {-48, Automatic}},
+FrontEndVersion->"10.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (2015\:5e7410\
+\:67089\:65e5)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 357, 14, 220, "Text"],
+Cell[918, 36, 465, 9, 87, "Text"],
+Cell[1386, 47, 534, 13, 144, "Text"],
+Cell[1923, 62, 592, 30, 448, "Text"],
+Cell[2518, 94, 1334, 42, 138, "Input"],
+Cell[CellGroupData[{
+Cell[3877, 140, 122, 2, 28, "Input"],
+Cell[4002, 144, 103, 1, 86, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
