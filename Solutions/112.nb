@@ -1,0 +1,217 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6997,        207]
+NotebookOptionsPosition[      6181,        174]
+NotebookOutlinePosition[      6549,        190]
+CellTagsIndexPosition[      6506,        187]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Bouncy numbers
+Problem 112
+
+Working from left-to-right if no digit is exceeded by the digit to its left \
+it is called an increasing number; for example, 134468.
+
+Similarly if no digit is exceeded by the digit to its right it is called a \
+decreasing number; for example, 66420.
+
+We shall call a positive integer that is neither increasing nor decreasing a \
+\[OpenCurlyDoubleQuote]bouncy\[CloseCurlyDoubleQuote] number; for example, \
+155349.
+
+Clearly there cannot be any bouncy numbers below one-hundred, but just over \
+half of the numbers below one-thousand (525) are bouncy. In fact, the least \
+number for which the proportion of bouncy numbers first reaches 50% is 538.
+
+Surprisingly, bouncy numbers become more and more common and by the time we \
+reach 21780 the proportion of bouncy numbers is equal to 90%.
+
+Find the least number for which the proportion of bouncy numbers is exactly \
+99%.
+\
+\>", "Text",
+ CellChangeTimes->{3.682080155968232*^9}],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"isIncreasing", "[", "p_", "]"}], ":=", 
+    RowBox[{"GreaterEqual", "@@", 
+     RowBox[{"IntegerDigits", "@", "p"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"isDecreasing", "[", "p_", "]"}], ":=", 
+    RowBox[{"LessEqual", "@@", 
+     RowBox[{"IntegerDigits", "@", "p"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"isNotBouncy", "[", "p_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"isIncreasing", "@", "p"}], "||", 
+     RowBox[{"isDecreasing", "@", "p"}]}]}]}]}]], "Input",
+ CellChangeTimes->{{3.682077757599655*^9, 3.682077813748475*^9}, {
+  3.682077870924951*^9, 3.68207787166474*^9}, {3.682078185527442*^9, 
+  3.682078205960463*^9}, {3.682078267164188*^9, 3.682078280082533*^9}, {
+  3.682078415278414*^9, 3.682078509029873*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["try bonary search", "Title",
+ CellChangeTimes->{{3.682080104637822*^9, 3.682080117185851*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"maxN", "=", "100000"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"notBouncyList", "=", 
+   RowBox[{"isNotBouncy", "/@", 
+    RowBox[{"Range", "@", "maxN"}]}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.6820785164841146`*^9, 3.682078520210175*^9}, 
+   3.6820785951431103`*^9, {3.6820788229592648`*^9, 3.6820788666839113`*^9}, {
+   3.682079405112936*^9, 3.68207940574273*^9}, {3.6820796748218613`*^9, 
+   3.682079676109709*^9}, {3.6820797333632383`*^9, 3.682079733611486*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"bouncyRatio", "[", "countN_", "]"}], ":=", 
+  RowBox[{"1", "-", 
+   RowBox[{
+    RowBox[{"Count", "[", 
+     RowBox[{
+      RowBox[{"notBouncyList", "[", 
+       RowBox[{"[", 
+        RowBox[{"1", ";;", "countN"}], "]"}], "]"}], ",", "True"}], "]"}], 
+    "/", "countN"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"bouncyRatioList", "=", 
+   RowBox[{"bouncyRatio", "/@", 
+    RowBox[{"Range", "@", "maxN"}]}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.6820785437916117`*^9, 3.682078587798606*^9}, {
+   3.682078878920516*^9, 3.682078898885106*^9}, {3.6820791813704042`*^9, 
+   3.6820792217220373`*^9}, {3.6820793465699167`*^9, 3.682079352408543*^9}, {
+   3.6820794840379133`*^9, 3.682079485803832*^9}, {3.682079540337459*^9, 
+   3.682079540424893*^9}, 3.682079607325305*^9, 3.6820796503829117`*^9}],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<Combinatorica`\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.682079084889811*^9, 3.682079084890727*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"BinarySearch", "[", 
+  RowBox[{"bouncyRatioList", ",", 
+   RowBox[{"99", "/", "100"}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.682078863215835*^9, {3.682078906760448*^9, 3.6820789138348913`*^9}, 
+   3.682079175492996*^9, {3.682079210135165*^9, 3.682079212297949*^9}, {
+   3.682079300080529*^9, 3.682079325327044*^9}, {3.6820793828892193`*^9, 
+   3.68207939709055*^9}, {3.6820794687822866`*^9, 3.682079490396665*^9}, 
+   3.682079589103114*^9, {3.682079623687192*^9, 3.682079668885206*^9}}],
+
+Cell[BoxData[
+ FractionBox["200001", "2"]], "Output",
+ CellChangeTimes->{
+  3.6820793250985317`*^9, {3.6820793615129623`*^9, 3.682079426368359*^9}, {
+   3.6820794806738234`*^9, 3.682079501630604*^9}, {3.682079602026812*^9, 
+   3.682079619105773*^9}, {3.682079664372473*^9, 3.68207966916251*^9}, 
+   3.682079725628289*^9, 3.6820799280891333`*^9}]
+}, Open  ]],
+
+Cell["too slow, failed", "Text",
+ CellChangeTimes->{{3.682080123089963*^9, 3.682080125985772*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["try simple loop", "Title",
+ CellChangeTimes->{{3.6820801294013777`*^9, 3.682080135385487*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"now", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"isNotBouncyCount", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ratio", "=", 
+   RowBox[{"1", "/", "100"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"While", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"isNotBouncyCount", "/", "now"}], ">", "ratio"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"now", "=", 
+     RowBox[{"now", "+", "1"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"isNotBouncyCount", "=", 
+     RowBox[{"isNotBouncyCount", "+", 
+      RowBox[{"Count", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"isNotBouncy", "@", "now"}], "}"}], ",", "True"}], "]"}]}]}],
+     ";"}]}], "\[IndentingNewLine]", 
+  "]"}], "\[IndentingNewLine]", "now"}], "Input",
+ CellChangeTimes->{{3.682079778345957*^9, 3.682080008724224*^9}}],
+
+Cell[BoxData["1587000"], "Output",
+ CellChangeTimes->{3.682079989561067*^9, 3.6820800270628033`*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 702},
+WindowMargins->{{Automatic, 205}, {-17, Automatic}},
+FrontEndVersion->"10.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (2015\:5e7410\
+\:67089\:65e5)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 968, 25, 372, "Text"],
+Cell[1529, 47, 836, 19, 110, "Input"],
+Cell[CellGroupData[{
+Cell[2390, 70, 100, 1, 92, "Title"],
+Cell[2493, 73, 519, 10, 59, "Input"],
+Cell[3015, 85, 840, 19, 74, "Input"],
+Cell[3858, 106, 145, 2, 42, "Input"],
+Cell[CellGroupData[{
+Cell[4028, 112, 515, 9, 28, "Input"],
+Cell[4546, 123, 345, 6, 47, "Output"]
+}, Open  ]],
+Cell[4906, 132, 98, 1, 30, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5041, 138, 100, 1, 92, "Title"],
+Cell[CellGroupData[{
+Cell[5166, 143, 884, 24, 178, "Input"],
+Cell[6053, 169, 100, 1, 28, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
