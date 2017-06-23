@@ -1,0 +1,303 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8701,        295]
+NotebookOptionsPosition[      7103,        234]
+NotebookOutlinePosition[      7470,        250]
+CellTagsIndexPosition[      7427,        247]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Counting fractions
+Problem 72
+
+Consider the fraction, n/d, where n and d are positive integers.If n < d and \
+HCF (n, d) = 1, it is called a reduced proper fraction.If we list the set of \
+reduced proper fractions for d <= 8 in ascending order of size, we get : 1/8, \
+1/7, 1/6, 1/5, 1/4, 2/7, 1/3, 3/8, 2/5, 3/7, 1/2, 4/7, 3/5, 5/8, 2/3, 5/7, \
+3/4, 4/5, 5/6, 6/7, 7/8
+
+It can be seen that there are 21 elements in this set.How many elements would \
+be contained in the set of reduced proper fractions for d <= 1, 000, 000?\
+\>", "Text",
+ CellChangeTimes->{{3.707234205657127*^9, 3.70723420852595*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"countCoPrime", "[", "d_", "]"}], ":=", 
+  RowBox[{"Count", "[", 
+   RowBox[{
+    RowBox[{"Range", "[", 
+     RowBox[{"d", "-", "1"}], "]"}], ",", 
+    RowBox[{"_", "?", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"CoprimeQ", "[", 
+        RowBox[{"#", ",", "d"}], "]"}], "&"}], ")"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7072342239941187`*^9, 3.707234226964959*^9}, {
+   3.707234318217309*^9, 3.70723443245057*^9}, 3.707234468245491*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"countCoPrimeBelow", "[", "d_", "]"}], ":=", 
+  RowBox[{"Total", "[", 
+   RowBox[{"countCoPrime", "/@", 
+    RowBox[{"Range", "[", "d", "]"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7072345025652742`*^9, 3.70723453124475*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"maxN", "=", "5000"}]], "Input",
+ CellChangeTimes->{{3.707234474060184*^9, 3.707234494415121*^9}, 
+   3.707234552101989*^9, 3.707235163967308*^9, {3.707235311286415*^9, 
+   3.7072353285326242`*^9}, {3.7072357169411592`*^9, 3.707235721387945*^9}, {
+   3.707235884353834*^9, 3.7072358848381557`*^9}}],
+
+Cell[BoxData["5000"], "Output",
+ CellChangeTimes->{{3.707234481272874*^9, 3.707234495043808*^9}, 
+   3.707234552893746*^9, 3.707235164357718*^9, {3.707235312047534*^9, 
+   3.707235329047812*^9}, 3.707235721820279*^9, 3.7072358853349953`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"countCoPrimeBelow", "[", "8", "]"}]], "Input",
+ CellChangeTimes->{{3.707234535957418*^9, 3.70723453715749*^9}}],
+
+Cell[BoxData["21"], "Output",
+ CellChangeTimes->{3.707234537491145*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"countCoPrimeBelow", "[", "maxN", "]"}], "//", 
+  "AbsoluteTiming"}]], "Input",
+ CellChangeTimes->{{3.707234544813068*^9, 3.7072345456532917`*^9}, {
+  3.707235318790585*^9, 3.707235320213088*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"9.389124`", ",", "7600457"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.7072345463531*^9, 3.707234585016636*^9, {3.707235320879078*^9, 
+   3.7072353403637743`*^9}}]
+}, Open  ]],
+
+Cell["too slow", "Text",
+ CellChangeTimes->{{3.707234590870088*^9, 3.7072345918511753`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["try array", "Subchapter",
+ CellChangeTimes->{{3.707235130735373*^9, 3.707235138173752*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Count", "[", 
+   RowBox[{
+    RowBox[{"List", "@", 
+     RowBox[{"Array", "[", 
+      RowBox[{"CoprimeQ", ",", 
+       RowBox[{"{", 
+        RowBox[{"maxN", ",", "maxN"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "1"}], "}"}], ",", "Sequence"}], "]"}]}], ",", 
+    "True"}], "]"}], "//", "AbsoluteTiming"}]], "Input",
+ CellChangeTimes->{{3.707235139531776*^9, 3.7072351979712257`*^9}, {
+  3.707235236645199*^9, 3.7072353067045813`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"14.646096`", ",", "15200915"}], "}"}]], "Output",
+ CellChangeTimes->{{3.7072351657998533`*^9, 3.707235198256364*^9}, {
+   3.7072352655926523`*^9, 3.7072353145268183`*^9}, 3.707235355135442*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Count", "[", 
+   RowBox[{
+    RowBox[{"Flatten", "@", 
+     RowBox[{"Array", "[", 
+      RowBox[{"CoprimeQ", ",", 
+       RowBox[{"{", 
+        RowBox[{"maxN", ",", "maxN"}], "}"}]}], "]"}]}], ",", "True"}], "]"}],
+   "//", "AbsoluteTiming"}]], "Input",
+ CellChangeTimes->{{3.707235388788414*^9, 3.707235393244349*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"14.379915`", ",", "15200915"}], "}"}]], "Output",
+ CellChangeTimes->{3.70723540800555*^9}]
+}, Open  ]],
+
+Cell["even slower ", "Text",
+ CellChangeTimes->{{3.707235432163542*^9, 3.707235435682884*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["try zeta", "Subchapter",
+ CellChangeTimes->{{3.707235533113574*^9, 3.707235534480068*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"maxN", "=", "1000000"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"1", "/", 
+       RowBox[{"Zeta", "[", "2", "]"}]}], "*", 
+      RowBox[{"maxN", "^", "2"}]}], "-", "1"}], ")"}], "/", "2"}], "//", 
+  RowBox[{
+   RowBox[{"N", "[", 
+    RowBox[{"#", ",", 
+     RowBox[{"{", 
+      RowBox[{"Infinity", ",", "1"}], "}"}]}], "]"}], "&"}]}]}], "Input",
+ CellChangeTimes->{{3.707235550263998*^9, 3.707235681024076*^9}, {
+  3.707236033132181*^9, 3.707236033618782*^9}}],
+
+Cell[BoxData["1000000"], "Output",
+ CellChangeTimes->{{3.707235551823724*^9, 3.707235619374164*^9}, {
+   3.707235660462906*^9, 3.70723568128353*^9}, 3.707235724702154*^9, 
+   3.707236036847885*^9}],
+
+Cell[BoxData["3.039635509265133143316383896292`12.48282150933068*^11"], \
+"Output",
+ CellChangeTimes->{{3.707235551823724*^9, 3.707235619374164*^9}, {
+   3.707235660462906*^9, 3.70723568128353*^9}, 3.707235724702154*^9, 
+   3.707236036906662*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["try eulerphi", "Subchapter",
+ CellChangeTimes->{{3.707235813406489*^9, 3.7072358204930477`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Total", "[", 
+    RowBox[{"EulerPhi", "/@", 
+     RowBox[{"Range", "[", "maxN", "]"}]}], "]"}], "-", "1"}], "//", 
+  "AbsoluteTiming"}]], "Input",
+ CellChangeTimes->{{3.707235862466145*^9, 3.707235888954269*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.018307`", ",", "7600457"}], "}"}]], "Output",
+ CellChangeTimes->{{3.707235866411378*^9, 3.707235889201989*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"maxN", "=", "1000000"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Total", "[", 
+   RowBox[{"EulerPhi", "/@", 
+    RowBox[{"Range", "[", "maxN", "]"}]}], "]"}], "-", "1"}]}], "Input",
+ CellChangeTimes->{{3.707235902343657*^9, 3.707235905118163*^9}}],
+
+Cell[BoxData["1000000"], "Output",
+ CellChangeTimes->{3.707235905710023*^9}],
+
+Cell[BoxData["303963552391"], "Output",
+ CellChangeTimes->{3.707235909913616*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 708},
+WindowMargins->{{Automatic, 38}, {-14, Automatic}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (2016\:5e748\
+\:670817\:65e5)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 613, 13, 182, "Text"],
+Cell[1174, 35, 487, 13, 46, "Input"],
+Cell[1664, 50, 264, 6, 46, "Input"],
+Cell[CellGroupData[{
+Cell[1953, 60, 321, 5, 32, "Input"],
+Cell[2277, 67, 241, 3, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2555, 75, 135, 2, 32, InheritFromParent],
+Cell[2693, 79, 71, 1, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2801, 85, 230, 5, 46, "Input"],
+Cell[3034, 92, 204, 5, 32, "Output"]
+}, Open  ]],
+Cell[3253, 100, 92, 1, 30, "Text"],
+Cell[CellGroupData[{
+Cell[3370, 105, 97, 1, 63, "Subchapter"],
+Cell[CellGroupData[{
+Cell[3492, 110, 490, 13, 46, "Input"],
+Cell[3985, 125, 233, 4, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4255, 134, 354, 10, 46, "Input"],
+Cell[4612, 146, 130, 3, 32, "Output"]
+}, Open  ]],
+Cell[4757, 152, 94, 1, 30, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4888, 158, 96, 1, 63, "Subchapter"],
+Cell[CellGroupData[{
+Cell[5009, 163, 549, 16, 67, "Input"],
+Cell[5561, 181, 197, 3, 32, "Output"],
+Cell[5761, 186, 246, 4, 32, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6056, 196, 102, 1, 63, "Subchapter"],
+Cell[CellGroupData[{
+Cell[6183, 201, 259, 7, 46, "Input"],
+Cell[6445, 210, 153, 3, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6635, 218, 277, 6, 67, "Input"],
+Cell[6915, 226, 76, 1, 32, "Output"],
+Cell[6994, 229, 81, 1, 32, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
