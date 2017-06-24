@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      8701,        295]
-NotebookOptionsPosition[      7103,        234]
-NotebookOutlinePosition[      7470,        250]
-CellTagsIndexPosition[      7427,        247]
+NotebookDataLength[      8729,        296]
+NotebookOptionsPosition[      7131,        235]
+NotebookOutlinePosition[      7498,        251]
+CellTagsIndexPosition[      7455,        248]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -194,8 +194,9 @@ Cell[BoxData["3.039635509265133143316383896292`12.48282150933068*^11"], \
 
 Cell[CellGroupData[{
 
-Cell["try eulerphi", "Subchapter",
- CellChangeTimes->{{3.707235813406489*^9, 3.7072358204930477`*^9}}],
+Cell["try EulerPhi", "Subchapter",
+ CellChangeTimes->{{3.707235813406489*^9, 3.7072358204930477`*^9}, 
+   3.7072360908979263`*^9}],
 
 Cell[CellGroupData[{
 
@@ -286,15 +287,15 @@ Cell[5761, 186, 246, 4, 32, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6056, 196, 102, 1, 63, "Subchapter"],
+Cell[6056, 196, 130, 2, 63, "Subchapter"],
 Cell[CellGroupData[{
-Cell[6183, 201, 259, 7, 46, "Input"],
-Cell[6445, 210, 153, 3, 32, "Output"]
+Cell[6211, 202, 259, 7, 46, "Input"],
+Cell[6473, 211, 153, 3, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6635, 218, 277, 6, 67, "Input"],
-Cell[6915, 226, 76, 1, 32, "Output"],
-Cell[6994, 229, 81, 1, 32, "Output"]
+Cell[6663, 219, 277, 6, 67, "Input"],
+Cell[6943, 227, 76, 1, 32, "Output"],
+Cell[7022, 230, 81, 1, 32, "Output"]
 }, Open  ]]
 }, Open  ]]
 }
