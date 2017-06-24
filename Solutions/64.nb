@@ -1,0 +1,95 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2239,         85]
+NotebookOptionsPosition[      1727,         62]
+NotebookOutlinePosition[      2095,         78]
+CellTagsIndexPosition[      2052,         75]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Odd period square roots
+Problem 64 
+
+How many continued fractions for N \[LessEqual] 10000 have an odd period?\
+\>", "Text",
+ CellChangeTimes->{{3.7072812787977962`*^9, 3.707281288393888*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"oddPeroid", "[", "k_", "]"}], ":=", 
+  RowBox[{"OddQ", "@", 
+   RowBox[{"Length", "@", 
+    RowBox[{"Last", "@", 
+     RowBox[{"ContinuedFraction", "[", 
+      RowBox[{"Sqrt", "[", "k", "]"}], "]"}]}]}]}]}]], "Input",
+ CellChangeTimes->{{3.7072810818487797`*^9, 3.707281104116791*^9}, {
+  3.707281173833112*^9, 3.7072812140338287`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"oddPeroid", "@", "13"}]], "Input",
+ CellChangeTimes->{{3.707281219745377*^9, 3.7072812264262047`*^9}}],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{{3.70728122028376*^9, 3.7072812267944*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Count", "[", 
+  RowBox[{
+   RowBox[{"oddPeroid", "/@", 
+    RowBox[{"Range", "@", "10000"}]}], ",", "True"}], "]"}]], "Input",
+ CellChangeTimes->{{3.707281232918613*^9, 3.707281253038827*^9}}],
+
+Cell[BoxData["1322"], "Output",
+ CellChangeTimes->{3.707281257933391*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 708},
+WindowMargins->{{Automatic, 66}, {-123, Automatic}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (2016\:5e748\
+\:670817\:65e5)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 202, 6, 87, "Text"],
+Cell[763, 28, 371, 9, 46, "Input"],
+Cell[CellGroupData[{
+Cell[1159, 41, 126, 2, 32, "Input"],
+Cell[1288, 45, 94, 1, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1419, 51, 216, 5, 46, "Input"],
+Cell[1638, 58, 73, 1, 32, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
