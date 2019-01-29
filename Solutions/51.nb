@@ -1,0 +1,180 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6226,        172]
+NotebookOptionsPosition[      5226,        149]
+NotebookOutlinePosition[      5589,        165]
+CellTagsIndexPosition[      5546,        162]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Prime digit replacements
+Problem 51
+
+By replacing the 1st digit of the 2-digit number *3, it turns out that six of \
+the nine possible values: 13, 23, 43, 53, 73, and 83, are all prime.
+
+By replacing the 3rd and 4th digits of 56**3 with the same digit, this \
+5-digit number is the first example having seven primes among the ten \
+generated numbers, yielding the family: 56003, 56113, 56333, 56443, 56663, \
+56773, and 56993. Consequently 56003, being the first member of this family, \
+is the smallest prime with this property.
+
+Find the smallest prime which, by replacing part of the number (not \
+necessarily adjacent digits) with the same digit, is part of an eight prime \
+value family.
+\
+\>", "Text",
+ CellChangeTimes->{
+  3.757739181972918*^9},ExpressionUUID->"ae1c2ec3-44cf-4b51-ab8c-\
+aa0f62708910"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"numberOfSame", "[", 
+    RowBox[{"a_", ",", "b_"}], "]"}], ":=", 
+   RowBox[{"Count", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"Subtract", "@@", "#"}], "&"}], "/@", 
+      RowBox[{"Transpose", "[", 
+       RowBox[{"IntegerDigits", "/@", 
+        RowBox[{"{", 
+         RowBox[{"a", ",", "b"}], "}"}]}], "]"}]}], ",", "0"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"numberOfSame", "[", 
+   RowBox[{"{", 
+    RowBox[{"a_", ",", "b_"}], "}"}], "]"}], ":=", 
+  RowBox[{"Count", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"Subtract", "@@", "#"}], "&"}], "/@", 
+     RowBox[{"Transpose", "[", 
+      RowBox[{"IntegerDigits", "/@", 
+       RowBox[{"{", 
+        RowBox[{"a", ",", "b"}], "}"}]}], "]"}]}], ",", "0"}], 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.757739226584485*^9, 3.757739323332814*^9}, {
+  3.75773938825362*^9, 3.757739390960906*^9}, {3.757739423572834*^9, 
+  3.7577395392936487`*^9}, {3.75773959493719*^9, 3.7577395956604023`*^9}, {
+  3.7577401652063007`*^9, 3.757740171122439*^9}},
+ CellLabel->"In[38]:=",ExpressionUUID->"820d2ac0-4d8c-4b6c-81af-b4f60b635916"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"numberOfSame", "[", 
+  RowBox[{"299", ",", "393"}], "]"}]], "Input",
+ CellChangeTimes->{{3.757739313516238*^9, 3.757739354922669*^9}, {
+  3.757739598020385*^9, 3.7577396053314867`*^9}},
+ CellLabel->"In[30]:=",ExpressionUUID->"a656082c-f49e-42e2-a021-cfcea6f41ad8"],
+
+Cell[BoxData["1"], "Output",
+ CellChangeTimes->{
+  3.757739355271071*^9, 3.757739392956999*^9, {3.7577394260813227`*^9, 
+   3.7577394569434347`*^9}, {3.7577394907229033`*^9, 3.757739543202099*^9}, {
+   3.757739602434988*^9, 3.757739605768754*^9}},
+ CellLabel->"Out[30]=",ExpressionUUID->"0271a0a3-493f-4e0d-b679-081512e05d0b"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"kexpo", "=", "4"}], ";"}], "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.757739774471919*^9, 3.757739781544825*^9}, {
+  3.757740189267569*^9, 3.757740213300009*^9}},
+ CellLabel->"In[47]:=",ExpressionUUID->"da8acd4c-502c-458c-8b72-4ebaa714d941"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"primeStart", ",", "primeEnd"}], "}"}], "=", 
+   RowBox[{"PrimePi", "/@", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"10", "^", 
+       RowBox[{"(", 
+        RowBox[{"kexpo", "-", "1"}], ")"}]}], ",", 
+      RowBox[{"10", "^", "kexpo"}]}], "}"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"primeStart", "=", 
+   RowBox[{"primeStart", "+", "1"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.7577396299501867`*^9, 3.757739672009962*^9}, {
+  3.757739786691019*^9, 3.7577398113230333`*^9}, {3.757740077366147*^9, 
+  3.757740080819417*^9}},
+ CellLabel->"In[48]:=",ExpressionUUID->"8ed2aacd-d74e-4b3c-bf4a-191a102bc57c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"primepairs", "=", 
+   RowBox[{"Subsets", "[", 
+    RowBox[{
+     RowBox[{"Prime", "/@", 
+      RowBox[{"Range", "[", 
+       RowBox[{"primeStart", ",", "primeEnd"}], "]"}]}], ",", 
+     RowBox[{"{", "2", "}"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.757739835290615*^9, 3.7577398620462027`*^9}, {
+  3.757739982815424*^9, 3.757739986532214*^9}, {3.75774003433664*^9, 
+  3.757740055357691*^9}, {3.7577400866428747`*^9, 3.757740091091528*^9}},
+ CellLabel->"In[50]:=",ExpressionUUID->"6da3914e-aad2-4332-aa3a-82f440174f2b"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"t1", "=", 
+   RowBox[{"Select", "[", 
+    RowBox[{"primepairs", ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"numberOfSame", "@", "#"}], "\[Equal]", "2"}], "&"}]}], 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.757740100733837*^9, 3.7577401426580677`*^9}, {
+  3.757740224529605*^9, 3.757740230552495*^9}},
+ CellLabel->"In[51]:=",ExpressionUUID->"2a25ac46-5be8-4f92-801c-81b9c31035a8"]
+},
+WindowSize->{808, 708},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (2018\:5e743\
+\:67085\:65e5)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 819, 20, 311, "Text",ExpressionUUID->"ae1c2ec3-44cf-4b51-ab8c-aa0f62708910"],
+Cell[1380, 42, 1184, 33, 80, "Input",ExpressionUUID->"820d2ac0-4d8c-4b6c-81af-b4f60b635916"],
+Cell[CellGroupData[{
+Cell[2589, 79, 288, 5, 30, "Input",ExpressionUUID->"a656082c-f49e-42e2-a021-cfcea6f41ad8"],
+Cell[2880, 86, 326, 5, 34, "Output",ExpressionUUID->"0271a0a3-493f-4e0d-b679-081512e05d0b"]
+}, Open  ]],
+Cell[3221, 94, 302, 6, 52, "Input",ExpressionUUID->"da8acd4c-502c-458c-8b72-4ebaa714d941"],
+Cell[3526, 102, 694, 18, 67, "Input",ExpressionUUID->"8ed2aacd-d74e-4b3c-bf4a-191a102bc57c"],
+Cell[4223, 122, 565, 12, 44, "Input",ExpressionUUID->"6da3914e-aad2-4332-aa3a-82f440174f2b"],
+Cell[4791, 136, 431, 11, 44, "Input",ExpressionUUID->"2a25ac46-5be8-4f92-801c-81b9c31035a8"]
+}
+]
+*)
+
