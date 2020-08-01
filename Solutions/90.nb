@@ -1,0 +1,189 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6775,        181]
+NotebookOptionsPosition[      5569,        155]
+NotebookOutlinePosition[      5919,        170]
+CellTagsIndexPosition[      5876,        167]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Cube digit pairs
+Problem 90
+
+Each of the six faces on a cube has a different digit (0 to 9) written on it; \
+the same is done to a second cube.By placing the two cubes side - by - side \
+in different positions we can form a variety of 2 - digit numbers.For \
+example, the square number 64 could be formed : In fact, by carefully \
+choosing the digits on both cubes it is possible to display all of the square \
+numbers below one - hundred : 01, 04, 09, 16, 25, 36, 49, 64, and 81.
+
+For example, one way this can be achieved is by placing {0, 5, 6, 7, 8, 9} on \
+one cube and {1, 2, 3, 4, 8, 9} on the other cube.However, for this problem \
+we shall allow the 6 or 9 to be turned upside - down so that an arrangement \
+like {0, 5, 6, 7, 8, 9} and {1, 2, 3, 4, 6, 7} allows for all nine square \
+numbers to be displayed; otherwise it would be impossible to obtain 09.
+
+In determining a distinct arrangement we are interested in the digits on each \
+cube, not the order.{1, 2, 3, 4, 5, 6} is equivalent to {3, 6, 4, 1, 2, 5}
+{1, 2, 3, 4, 5, 6} is distinct from {1, 2, 3, 4, 5, 9}
+
+But because we are allowing 6 and 9 to be reversed, the two distinct sets in \
+the last example both represent the extended set {1, 2, 3, 4, 5, 6, 9} for \
+the purpose of forming 2 - digit numbers.How many distinct arrangements of \
+the two cubes allow for all of the square numbers to be displayed?\
+\>", "Text",
+ CellChangeTimes->{{3.805259166104793*^9, 
+  3.805259173040064*^9}},ExpressionUUID->"efd6328f-6927-476f-9d5e-\
+5bec2c5f6605"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"checkSet", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"#", "^", "2"}], "&"}], "/@", 
+   RowBox[{"Range", "@", "9"}]}]}]], "Input",
+ CellChangeTimes->{{3.805259199991392*^9, 3.805259234442584*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"1f1959a0-68a1-47a5-a451-63d8cfbd149d"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "1", ",", "4", ",", "9", ",", "16", ",", "25", ",", "36", ",", "49", ",", 
+   "64", ",", "81"}], "}"}]], "Output",
+ CellChangeTimes->{3.805259234685132*^9},
+ CellLabel->"Out[1]=",ExpressionUUID->"52946651-9b78-4cfb-9a42-35c3d2f30ccd"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"baseSets", "=", 
+   RowBox[{"Subsets", "[", 
+    RowBox[{
+     RowBox[{"Range", "[", 
+      RowBox[{"0", ",", "9"}], "]"}], ",", 
+     RowBox[{"{", "6", "}"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.8052592481221657`*^9, 3.8052593121643353`*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"8c2e255a-a455-4140-ab3b-2a336b17b62b"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"baseSetsUpdate", "=", 
+   RowBox[{"baseSets", "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"6", "\[Rule]", 
+       RowBox[{"Sequence", "[", 
+        RowBox[{"6", ",", "9"}], "]"}]}], ",", 
+      RowBox[{"9", "->", 
+       RowBox[{"Sequence", "[", 
+        RowBox[{"6", ",", "9"}], "]"}]}]}], "}"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.805259625863626*^9, 3.805259663160633*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"c1861935-9a0f-4db7-b78d-9e5bc3d0d2ba"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"genNumberInOrder", "[", 
+   RowBox[{"a_", ",", "b_"}], "]"}], ":=", 
+  RowBox[{"Outer", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"#1", "*", "10"}], "+", "#2"}], "&"}], ",", "a", ",", "b"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.805259328037716*^9, 3.805259380330364*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"05f5f6b3-3ad9-480b-a8ba-0691150820fe"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"genNumber", "[", 
+   RowBox[{"a_", ",", "b_"}], "]"}], ":=", 
+  RowBox[{"DeleteDuplicates", "@", 
+   RowBox[{"Flatten", "@", 
+    RowBox[{"Join", "[", 
+     RowBox[{
+      RowBox[{"genNumberInOrder", "[", 
+       RowBox[{"a", ",", "b"}], "]"}], ",", 
+      RowBox[{"genNumberInOrder", "[", 
+       RowBox[{"b", ",", "a"}], "]"}]}], "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.805259390673177*^9, 3.805259391670391*^9}, {
+  3.805259423697092*^9, 3.8052594492372303`*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"fc154bf8-366d-4012-8cc5-3830d6e32d81"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"check", "[", 
+   RowBox[{"a_", ",", "b_"}], "]"}], ":=", 
+  RowBox[{"SubsetQ", "[", 
+   RowBox[{
+    RowBox[{"genNumber", "[", 
+     RowBox[{"a", ",", "b"}], "]"}], ",", "checkSet"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.805259457820541*^9, 3.805259508238394*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"f816a6f0-7054-4970-8860-a9c9f8b6e576"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Count", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"check", "@@", "#"}], "&"}], "/@", 
+    RowBox[{"Subsets", "[", 
+     RowBox[{"baseSetsUpdate", ",", 
+      RowBox[{"{", "2", "}"}]}], "]"}]}], ",", "True"}], "]"}]], "Input",
+ CellChangeTimes->{{3.8052597075118227`*^9, 3.805259765241673*^9}},
+ CellLabel->"In[17]:=",ExpressionUUID->"4c2819de-df34-4f15-8b52-ec1b25c98e0c"],
+
+Cell[BoxData["1217"], "Output",
+ CellChangeTimes->{3.805259781698585*^9},
+ CellLabel->"Out[17]=",ExpressionUUID->"7b919db4-9589-45f8-8fc1-3dade77e26c7"]
+}, Open  ]]
+},
+WindowSize->{808, 879},
+WindowMargins->{{Automatic, 344}, {-15, Automatic}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (2019\:5e744\:67088\:65e5)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1527, 28, 472, "Text",ExpressionUUID->"efd6328f-6927-476f-9d5e-5bec2c5f6605"],
+Cell[CellGroupData[{
+Cell[2110, 52, 296, 7, 30, "Input",ExpressionUUID->"1f1959a0-68a1-47a5-a451-63d8cfbd149d"],
+Cell[2409, 61, 276, 6, 34, "Output",ExpressionUUID->"52946651-9b78-4cfb-9a42-35c3d2f30ccd"]
+}, Open  ]],
+Cell[2700, 70, 370, 9, 30, "Input",ExpressionUUID->"8c2e255a-a455-4140-ab3b-2a336b17b62b"],
+Cell[3073, 81, 507, 13, 30, "Input",ExpressionUUID->"c1861935-9a0f-4db7-b78d-9e5bc3d0d2ba"],
+Cell[3583, 96, 409, 11, 30, "Input",ExpressionUUID->"05f5f6b3-3ad9-480b-a8ba-0691150820fe"],
+Cell[3995, 109, 584, 14, 52, "Input",ExpressionUUID->"fc154bf8-366d-4012-8cc5-3830d6e32d81"],
+Cell[4582, 125, 382, 9, 30, "Input",ExpressionUUID->"f816a6f0-7054-4970-8860-a9c9f8b6e576"],
+Cell[CellGroupData[{
+Cell[4989, 138, 409, 10, 30, "Input",ExpressionUUID->"4c2819de-df34-4f15-8b52-ec1b25c98e0c"],
+Cell[5401, 150, 152, 2, 34, "Output",ExpressionUUID->"7b919db4-9589-45f8-8fc1-3dade77e26c7"]
+}, Open  ]]
+}
+]
+*)
+
