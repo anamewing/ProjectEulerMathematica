@@ -1,0 +1,197 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6734,        189]
+NotebookOptionsPosition[      5804,        166]
+NotebookOutlinePosition[      6153,        181]
+CellTagsIndexPosition[      6110,        178]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Prime summations
+Problem 77\
+\>", "Text",
+ CellChangeTimes->{{3.809389282167927*^9, 
+  3.809389287077609*^9}},ExpressionUUID->"d4e1b0b1-3550-4c0d-9d64-\
+5a02cc27d042"],
+
+Cell["\<\
+It is possible to write ten as the sum of primes in exactly five different \
+ways:
+
+7 + 3
+5 + 5
+5 + 3 + 2
+3 + 3 + 2 + 2
+2 + 2 + 2 + 2 + 2
+
+What is the first value which can be written as the sum of primes in over \
+five thousand different ways?
+\
+\>", "Text",
+ CellChangeTimes->{{3.809389271755953*^9, 
+  3.8093892893581867`*^9}},ExpressionUUID->"8cd573e9-ac78-4766-9ec2-\
+a9345e14d034"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"g", "[", 
+   RowBox[{"n_Integer", ",", "k_Integer"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"g", "[", 
+    RowBox[{"n", ",", "k"}], "]"}], "=", 
+   RowBox[{"0", "/;", 
+    RowBox[{"n", "<", "k"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g", "[", 
+   RowBox[{"n_Integer", ",", "n_Integer"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"g", "[", 
+    RowBox[{"n", ",", "n"}], "]"}], "=", "1"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g", "[", 
+   RowBox[{"n_Integer", ",", "k_Integer"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"g", "[", 
+    RowBox[{"n", ",", "k"}], "]"}], "=", 
+   RowBox[{"Block", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"p", "=", "k"}], ",", 
+       RowBox[{"sum", "=", "0"}]}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"While", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"2", "p"}], "<=", "n"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"sum", "=", 
+           RowBox[{"sum", "+", 
+            RowBox[{"g", "[", 
+             RowBox[{
+              RowBox[{"n", "-", "p"}], ",", "p"}], "]"}]}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"p", "=", 
+           RowBox[{"NextPrime", "[", "p", "]"}]}], ";"}], ")"}]}], "]"}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"PrimeQ", "[", "n", "]"}], ",", 
+        RowBox[{"sum", "=", 
+         RowBox[{"sum", "+", "1"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+      "sum"}]}], "]"}]}]}]}], "Input",
+ CellChangeTimes->{{3.80938946851752*^9, 3.809389503947938*^9}, {
+   3.809389554860696*^9, 3.809389605208889*^9}, {3.809389647456612*^9, 
+   3.809389759961648*^9}, {3.8093897986984777`*^9, 3.809389803153878*^9}, {
+   3.809389872208523*^9, 3.8093898865442677`*^9}, {3.809389920169786*^9, 
+   3.809389934991281*^9}, 3.809390087722537*^9},
+ CellLabel->
+  "In[451]:=",ExpressionUUID->"da4e36f8-5273-4a26-be94-2b26428fad55"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"list", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"g", "[", 
+     RowBox[{"#", ",", "2"}], "]"}], "&"}], "/@", 
+   RowBox[{"Range", "@", "100"}]}]}]], "Input",
+ CellChangeTimes->{{3.809390123703768*^9, 3.809390148731861*^9}, {
+  3.809390399434701*^9, 3.809390416918317*^9}},
+ CellLabel->
+  "In[470]:=",ExpressionUUID->"89fbf11d-ccea-46ac-ad1e-d1b3abb708ee"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0", ",", "1", ",", "1", ",", "1", ",", "2", ",", "2", ",", "3", ",", "3", 
+   ",", "4", ",", "5", ",", "6", ",", "7", ",", "9", ",", "10", ",", "12", 
+   ",", "14", ",", "17", ",", "19", ",", "23", ",", "26", ",", "30", ",", 
+   "35", ",", "40", ",", "46", ",", "52", ",", "60", ",", "67", ",", "77", 
+   ",", "87", ",", "98", ",", "111", ",", "124", ",", "140", ",", "157", ",", 
+   "175", ",", "197", ",", "219", ",", "244", ",", "272", ",", "302", ",", 
+   "336", ",", "372", ",", "413", ",", "456", ",", "504", ",", "557", ",", 
+   "614", ",", "677", ",", "744", ",", "819", ",", "899", ",", "987", ",", 
+   "1083", ",", "1186", ",", "1298", ",", "1420", ",", "1552", ",", "1695", 
+   ",", "1850", ",", "2018", ",", "2198", ",", "2394", ",", "2605", ",", 
+   "2833", ",", "3079", ",", "3344", ",", "3630", ",", "3936", ",", "4268", 
+   ",", "4624", ",", "5007", ",", "5419", ",", "5861", ",", "6336", ",", 
+   "6845", ",", "7393", ",", "7979", ",", "8608", ",", "9282", ",", "10003", 
+   ",", "10776", ",", "11603", ",", "12488", ",", "13435", ",", "14445", ",", 
+   "15527", ",", "16681", ",", "17914", ",", "19232", ",", "20636", ",", 
+   "22134", ",", "23732", ",", "25436", ",", "27251", ",", "29186", ",", 
+   "31246", ",", "33439", ",", "35772", ",", "38257", ",", "40899"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.8093901324714947`*^9, 3.809390149603568*^9}, 
+   3.8093904172464733`*^9},
+ CellLabel->
+  "Out[470]=",ExpressionUUID->"eba41fc0-5c11-43b4-baec-3468f2505292"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FirstPosition", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"#", ">", "5000"}], "&"}], "/@", "list"}], ",", "True"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.8093901599521923`*^9, 3.809390161522172*^9}, {
+   3.809390194062091*^9, 3.8093903359726257`*^9}, 3.8093904219456*^9},
+ CellLabel->
+  "In[471]:=",ExpressionUUID->"9240edad-1a8a-4f66-984e-36666c805628"],
+
+Cell[BoxData[
+ RowBox[{"{", "71", "}"}]], "Output",
+ CellChangeTimes->{{3.8093902481812963`*^9, 3.809390264548669*^9}, {
+   3.8093903130206327`*^9, 3.809390336060679*^9}, 3.8093904225543547`*^9},
+ CellLabel->
+  "Out[471]=",ExpressionUUID->"e5d157a0-c595-48ec-a9dc-c0a7737ea482"]
+}, Open  ]]
+},
+WindowSize->{808, 878},
+WindowMargins->{{Automatic, 443}, {39, Automatic}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (2019\:5e744\:67088\:65e5)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 177, 6, 58, "Text",ExpressionUUID->"d4e1b0b1-3550-4c0d-9d64-5a02cc27d042"],
+Cell[738, 28, 397, 16, 242, "Text",ExpressionUUID->"8cd573e9-ac78-4766-9ec2-a9345e14d034"],
+Cell[1138, 46, 2002, 55, 178, "Input",ExpressionUUID->"da4e36f8-5273-4a26-be94-2b26428fad55"],
+Cell[CellGroupData[{
+Cell[3165, 105, 379, 10, 30, "Input",ExpressionUUID->"89fbf11d-ccea-46ac-ad1e-d1b3abb708ee"],
+Cell[3547, 117, 1528, 24, 140, "Output",ExpressionUUID->"eba41fc0-5c11-43b4-baec-3468f2505292"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5112, 146, 395, 10, 30, "Input",ExpressionUUID->"9240edad-1a8a-4f66-984e-36666c805628"],
+Cell[5510, 158, 278, 5, 34, "Output",ExpressionUUID->"e5d157a0-c595-48ec-a9dc-c0a7737ea482"]
+}, Open  ]]
+}
+]
+*)
+
