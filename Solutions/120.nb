@@ -1,0 +1,129 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3988,        121]
+NotebookOptionsPosition[      3069,         98]
+NotebookOutlinePosition[      3418,        113]
+CellTagsIndexPosition[      3375,        110]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Square remainders
+Problem 120\
+\>", "Text",
+ CellChangeTimes->{{3.8093989697125177`*^9, 
+  3.809398973210742*^9}},ExpressionUUID->"3b2b9f52-f13e-4fda-88c8-\
+049f212b26e0"],
+
+Cell["\<\
+Let r be the remainder when (a\[Minus]1)n + (a+1)n is divided by a2.
+
+For example, if a = 7 and n = 3, then r = 42: 63 + 83 = 728 \[Congruent] 42 \
+mod 49. And as n varies, so too will r, but for a = 7 it turns out that rmax \
+= 42.
+
+For 3 \[LessEqual] a \[LessEqual] 1000, find \[Sum] rmax.
+\
+\>", "Text",
+ CellChangeTimes->{{3.809398984984481*^9, 
+  3.8093989929810057`*^9}},ExpressionUUID->"6aae346e-06e5-468c-9f8a-\
+6dba0d2de540"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"f", "[", "a_", "]"}], ":=", 
+  RowBox[{"Max", "[", 
+   RowBox[{"2", ",", 
+    RowBox[{"2", "a"}], ",", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"Mod", "[", 
+        RowBox[{"#", ",", "a"}], "]"}], "a"}], "&"}], "/@", 
+     RowBox[{"Range", "[", 
+      RowBox[{"2", ",", 
+       RowBox[{"a", "^", "2"}], ",", "4"}], "]"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.809399036368711*^9, 3.8093990788385153`*^9}, {
+   3.809399113420938*^9, 3.809399136293269*^9}, {3.809399194293994*^9, 
+   3.809399202007856*^9}, 3.809399320289439*^9, {3.8093993861729507`*^9, 
+   3.809399387832862*^9}},
+ CellLabel->
+  "In[850]:=",ExpressionUUID->"f7bb7700-a7b6-4dc5-a250-a8a9ad86b679"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"f", "[", "7", "]"}]], "Input",
+ CellChangeTimes->{{3.809399204324094*^9, 3.809399205068576*^9}, {
+   3.809399423790016*^9, 3.809399424854205*^9}, 3.809399537950341*^9},
+ CellLabel->
+  "In[853]:=",ExpressionUUID->"daa3b127-7e31-4d24-a575-80d96d8e9271"],
+
+Cell[BoxData["42"], "Output",
+ CellChangeTimes->{3.809399205472205*^9, 3.8093993925034657`*^9, 
+  3.8093994250788717`*^9, 3.8093994858606777`*^9, 3.809399538243246*^9},
+ CellLabel->
+  "Out[853]=",ExpressionUUID->"30450d76-fde5-4f44-892d-4c70464e094f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Total", "@", 
+  RowBox[{"(", 
+   RowBox[{"f", "/@", 
+    RowBox[{"Range", "[", 
+     RowBox[{"3", ",", "1000"}], "]"}]}], ")"}]}]], "Input",
+ CellChangeTimes->{{3.809399394912836*^9, 3.8093994118915043`*^9}, {
+  3.809399511789791*^9, 3.8093995175327044`*^9}},
+ CellLabel->
+  "In[852]:=",ExpressionUUID->"6e4565d6-4554-462e-b954-05ff6ecadbe7"],
+
+Cell[BoxData["333082500"], "Output",
+ CellChangeTimes->{3.809399415407784*^9, 3.809399521428886*^9},
+ CellLabel->
+  "Out[852]=",ExpressionUUID->"a9e44ad9-48b2-4031-93bb-cee3b7a81239"]
+}, Open  ]]
+},
+WindowSize->{808, 878},
+WindowMargins->{{Automatic, 508}, {36, Automatic}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (2019\:5e744\:67088\:65e5)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 181, 6, 58, "Text",ExpressionUUID->"3b2b9f52-f13e-4fda-88c8-049f212b26e0"],
+Cell[742, 28, 444, 12, 173, "Text",ExpressionUUID->"6aae346e-06e5-468c-9f8a-6dba0d2de540"],
+Cell[1189, 42, 721, 19, 30, "Input",ExpressionUUID->"f7bb7700-a7b6-4dc5-a250-a8a9ad86b679"],
+Cell[CellGroupData[{
+Cell[1935, 65, 275, 5, 30, "Input",ExpressionUUID->"daa3b127-7e31-4d24-a575-80d96d8e9271"],
+Cell[2213, 72, 251, 4, 34, "Output",ExpressionUUID->"30450d76-fde5-4f44-892d-4c70464e094f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2501, 81, 366, 9, 30, "Input",ExpressionUUID->"6e4565d6-4554-462e-b954-05ff6ecadbe7"],
+Cell[2870, 92, 183, 3, 34, "Output",ExpressionUUID->"a9e44ad9-48b2-4031-93bb-cee3b7a81239"]
+}, Open  ]]
+}
+]
+*)
+
